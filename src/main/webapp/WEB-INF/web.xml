@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+  version="2.5" 
+  xmlns="http://java.sun.com/xml/ns/javaee">
+
+  <servlet>
+    <servlet-name>MetricsServlet</servlet-name>
+    <servlet-class>com.codahale.metrics.servlets.MetricsServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>MetricsServlet</servlet-name>
+    <url-pattern>/metrics/*</url-pattern>
+  </servlet-mapping>  
+  
+  <servlet>
+    <servlet-name>HealthCheckServlet</servlet-name>
+    <servlet-class>com.codahale.metrics.servlets.HealthCheckServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>HealthCheckServlet</servlet-name>
+    <url-pattern>/health/*</url-pattern>
+  </servlet-mapping>  
+  
+</web-app>
