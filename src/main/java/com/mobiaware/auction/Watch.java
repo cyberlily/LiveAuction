@@ -26,8 +26,8 @@ public class Watch {
   private final int _userUid;
 
   @JsonCreator
-  public Watch(@JsonProperty("uid") final int uid, @JsonProperty("itemuid") final int itemUid,
-      @JsonProperty("useruid") final int userUid) {
+  public Watch(@JsonProperty("uid") final int uid, @JsonProperty("itemUid") final int itemUid,
+      @JsonProperty("userUid") final int userUid) {
 
     _uid = uid;
     _itemUid = itemUid;
@@ -39,12 +39,12 @@ public class Watch {
     return _uid;
   }
 
-  @JsonProperty("itemuid")
+  @JsonProperty("itemUid")
   public int getItemUid() {
     return _itemUid;
   }
 
-  @JsonProperty("useruid")
+  @JsonProperty("userUid")
   public int getUserUid() {
     return _userUid;
   }

@@ -28,9 +28,9 @@ public class Bid {
   private final long _bidDate;
 
   @JsonCreator
-  public Bid(@JsonProperty("uid") final int uid, @JsonProperty("itemuid") final int itemUid,
-      @JsonProperty("useruid") final int userUid, @JsonProperty("bidprice") final double bidPrice,
-      @JsonProperty("biddate") final long bidDate) {
+  public Bid(@JsonProperty("uid") final int uid, @JsonProperty("itemUid") final int itemUid,
+      @JsonProperty("userUid") final int userUid, @JsonProperty("bidPrice") final double bidPrice,
+      @JsonProperty("bidDate") final long bidDate) {
 
     _uid = uid;
     _itemUid = itemUid;
@@ -44,22 +44,22 @@ public class Bid {
     return _uid;
   }
 
-  @JsonProperty("itemuid")
+  @JsonProperty("itemUid")
   public int getItemUid() {
     return _itemUid;
   }
 
-  @JsonProperty("useruid")
+  @JsonProperty("userUid")
   public int getUserUid() {
     return _userUid;
   }
 
-  @JsonProperty("bidprice")
+  @JsonProperty("bidPrice")
   public double getBidPrice() {
     return _bidPrice;
   }
 
-  @JsonProperty("biddate")
+  @JsonProperty("bidDate")
   public long getBidDate() {
     return _bidDate;
   }

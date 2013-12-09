@@ -27,7 +27,7 @@ public class Category {
 
   @JsonCreator
   public Category(@JsonProperty("uid") final int uid,
-      @JsonProperty("auctionuid") final int auctionUid, @JsonProperty("name") final String name) {
+      @JsonProperty("auctionUid") final int auctionUid, @JsonProperty("name") final String name) {
 
     _uid = uid;
     _auctionUid = auctionUid;
@@ -39,7 +39,7 @@ public class Category {
     return _uid;
   }
 
-  @JsonProperty("auctionuid")
+  @JsonProperty("auctionUid")
   public int getAuctionUid() {
     return _auctionUid;
   }

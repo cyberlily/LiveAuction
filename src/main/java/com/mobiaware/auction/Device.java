@@ -27,9 +27,9 @@ public class Device {
   private final String _deviceType;
 
   @JsonCreator
-  public Device(@JsonProperty("uid") final int uid, @JsonProperty("useruid") final int userUid,
-      @JsonProperty("deviceid") final String deviceId,
-      @JsonProperty("devicetype") final String deviceType) {
+  public Device(@JsonProperty("uid") final int uid, @JsonProperty("userUid") final int userUid,
+      @JsonProperty("deviceId") final String deviceId,
+      @JsonProperty("deviceType") final String deviceType) {
 
     _uid = uid;
     _userUid = userUid;
@@ -42,17 +42,17 @@ public class Device {
     return _uid;
   }
 
-  @JsonProperty("useruid")
+  @JsonProperty("userUid")
   public int getUserUid() {
     return _userUid;
   }
 
-  @JsonProperty("deviceid")
+  @JsonProperty("deviceId")
   public String getDeviceId() {
     return _deviceId;
   }
 
-  @JsonProperty("devicetype")
+  @JsonProperty("deviceType")
   public String getDeviceType() {
     return _deviceType;
   }

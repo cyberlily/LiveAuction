@@ -32,10 +32,10 @@ public class User {
   private String _passwordHash; // should not serialize
 
   @JsonCreator
-  public User(@JsonProperty("uid") final int uid, @JsonProperty("auctionuid") final int auctionUid,
-      @JsonProperty("biddernumber") final String bidderNumber,
-      @JsonProperty("firstname") final String firstName,
-      @JsonProperty("lastname") final String lastName) {
+  public User(@JsonProperty("uid") final int uid, @JsonProperty("auctionUid") final int auctionUid,
+      @JsonProperty("bidderNumber") final String bidderNumber,
+      @JsonProperty("firstName") final String firstName,
+      @JsonProperty("lastName") final String lastName) {
 
     _uid = uid;
     _auctionUid = auctionUid;
@@ -49,27 +49,27 @@ public class User {
     return _uid;
   }
 
-  @JsonProperty("auctionuid")
+  @JsonProperty("auctionUid")
   public int getAuctionUid() {
     return _auctionUid;
   }
 
-  @JsonProperty("biddernumber")
+  @JsonProperty("bidderNumber")
   public String getBidderNumber() {
     return _bidderNumber;
   }
 
-  @JsonProperty("firstname")
+  @JsonProperty("firstName")
   public String getFirstName() {
     return _firstName;
   }
 
-  @JsonProperty("lastname")
+  @JsonProperty("lastName")
   public String getLastName() {
     return _lastName;
   }
 
-  @JsonProperty("sessionid")
+  @JsonProperty("sessionId")
   public String getSessionId() {
     return _sessionId;
   }

@@ -39,16 +39,16 @@ public class Item {
   private final boolean _multi;
 
   @JsonCreator
-  public Item(@JsonProperty("uid") final int uid, @JsonProperty("auctionuid") final int auctionUid,
-      @JsonProperty("itemnumber") final String itemNumber, @JsonProperty("name") final String name,
+  public Item(@JsonProperty("uid") final int uid, @JsonProperty("auctionUid") final int auctionUid,
+      @JsonProperty("itemNumber") final String itemNumber, @JsonProperty("name") final String name,
       @JsonProperty("description") final String description,
       @JsonProperty("category") final String category, @JsonProperty("seller") final String seller,
-      @JsonProperty("valprice") final double valPrice,
-      @JsonProperty("minprice") final double minPrice,
-      @JsonProperty("incprice") final double incPrice,
-      @JsonProperty("curprice") final double curPrice, @JsonProperty("winner") final String winner,
-      @JsonProperty("bidcount") final int bidCount,
-      @JsonProperty("watchcount") final int watchCount, @JsonProperty("url") final String url,
+      @JsonProperty("valPrice") final double valPrice,
+      @JsonProperty("minPrice") final double minPrice,
+      @JsonProperty("incPrice") final double incPrice,
+      @JsonProperty("curPrice") final double curPrice, @JsonProperty("winner") final String winner,
+      @JsonProperty("bidCount") final int bidCount,
+      @JsonProperty("watchCount") final int watchCount, @JsonProperty("url") final String url,
       @JsonProperty("multi") final boolean multi) {
 
     _uid = uid;
@@ -75,12 +75,12 @@ public class Item {
     return _uid;
   }
 
-  @JsonProperty("auctionuid")
+  @JsonProperty("auctionUid")
   public int getAuctionUid() {
     return _auctionUid;
   }
 
-  @JsonProperty("itemnumber")
+  @JsonProperty("itemNumber")
   public String getItemNumber() {
     return _itemNumber;
   }
@@ -105,22 +105,22 @@ public class Item {
     return _seller;
   }
 
-  @JsonProperty("valprice")
+  @JsonProperty("valPrice")
   public double getValPrice() {
     return _valPrice;
   }
 
-  @JsonProperty("minprice")
+  @JsonProperty("minPrice")
   public double getMinPrice() {
     return _minPrice;
   }
 
-  @JsonProperty("incprice")
+  @JsonProperty("incPrice")
   public double getIncPrice() {
     return _incPrice;
   }
 
-  @JsonProperty("curprice")
+  @JsonProperty("curPrice")
   public double getCurPrice() {
     return _curPrice;
   }
@@ -130,12 +130,12 @@ public class Item {
     return _winner;
   }
 
-  @JsonProperty("bidcount")
+  @JsonProperty("bidCount")
   public int getBidCount() {
     return _bidCount;
   }
 
-  @JsonProperty("watchcount")
+  @JsonProperty("watchCount")
   public int getWatchCount() {
     return _watchCount;
   }

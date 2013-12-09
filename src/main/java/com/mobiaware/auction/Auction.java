@@ -33,7 +33,7 @@ public class Auction {
 
   @JsonCreator
   public Auction(@JsonProperty("uid") final int uid, @JsonProperty("name") final String name,
-      @JsonProperty("startdate") final long startDate, @JsonProperty("enddate") final long endDate) {
+      @JsonProperty("startDate") final long startDate, @JsonProperty("endDate") final long endDate) {
     _uid = uid;
     _name = name;
     _startDate = new DateTime(startDate);
@@ -50,12 +50,12 @@ public class Auction {
     return _name;
   }
 
-  @JsonProperty("startdate")
+  @JsonProperty("startDate")
   public long getStartDate() {
     return _startDate.getMillis();
   }
 
-  @JsonProperty("enddate")
+  @JsonProperty("endDate")
   public long getEndDate() {
     return _endDate.getMillis();
   }
