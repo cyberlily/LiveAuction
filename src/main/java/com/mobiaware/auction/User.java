@@ -103,53 +103,21 @@ public class User {
 
   @Override
   public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
-    }
-
     if (obj == null) {
       return false;
     }
 
-    if (!(obj instanceof User)) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
 
     User other = (User) obj;
 
-    if (getUid() != other.getUid()) {
-      return false;
-    }
-
-    if (getAuctionUid() != other.getAuctionUid()) {
-      return false;
-    }
-
-    if (getBidderNumber() == null) {
-      if (other.getBidderNumber() != null) {
-        return false;
-      }
-    } else if (!getBidderNumber().equals(other.getBidderNumber())) {
-      return false;
-    }
-
-    if (getFirstName() == null) {
-      if (other.getFirstName() != null) {
-        return false;
-      }
-    } else if (!getFirstName().equals(other.getFirstName())) {
-      return false;
-    }
-
-    if (getLastName() == null) {
-      if (other.getLastName() != null) {
-        return false;
-      }
-    } else if (!getLastName().equals(other.getLastName())) {
-      return false;
-    }
-
-    return true;
+    return Objects.equal(getUid(), other.getUid())
+        && Objects.equal(getAuctionUid(), other.getAuctionUid())
+        && Objects.equal(getBidderNumber(), other.getBidderNumber())
+        && Objects.equal(getFirstName(), other.getFirstName())
+        && Objects.equal(getLastName(), other.getLastName());
   }
 
   @Override

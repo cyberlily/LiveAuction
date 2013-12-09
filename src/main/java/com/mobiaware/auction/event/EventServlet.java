@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mobiaware.servlet.action.Action;
 
-@WebServlet(name="EventServlet", urlPatterns="/event")
+@WebServlet(name = "EventServlet", urlPatterns = "/event")
 public class EventServlet extends HttpServlet {
   private static final long serialVersionUID = -7953449788113267675L;
 

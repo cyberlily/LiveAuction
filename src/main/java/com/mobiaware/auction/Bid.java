@@ -79,41 +79,21 @@ public class Bid {
 
   @Override
   public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
-    }
-
     if (obj == null) {
       return false;
     }
 
-    if (!(obj instanceof Bid)) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
 
     Bid other = (Bid) obj;
 
-    if (getUid() != other.getUid()) {
-      return false;
-    }
-
-    if (getItemUid() != other.getItemUid()) {
-      return false;
-    }
-
-    if (getUserUid() != other.getUserUid()) {
-      return false;
-    }
-
-    if (Double.doubleToLongBits(getBidPrice()) != Double.doubleToLongBits(other.getBidPrice())) {
-      return false;
-    }
-
-    if (getBidDate() != other.getBidDate()) {
-      return false;
-    }
-
-    return true;
+    return Objects.equal(getUid(), other.getUid())
+        && Objects.equal(getItemUid(), other.getItemUid())
+        && Objects.equal(getUserUid(), other.getUserUid())
+        && Objects.equal(getBidPrice(), other.getBidPrice())
+        && Objects.equal(getBidDate(), other.getBidDate());
   }
 
   @Override

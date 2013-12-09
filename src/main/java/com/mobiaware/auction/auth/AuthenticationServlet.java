@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mobiaware.servlet.action.Action;
 
-@WebServlet(name="AuthenticationServlet", urlPatterns="/auth")
+@WebServlet(name = "AuthenticationServlet", urlPatterns = "/auth")
 public class AuthenticationServlet extends HttpServlet {
   private static final long serialVersionUID = 569332405871865589L;
 

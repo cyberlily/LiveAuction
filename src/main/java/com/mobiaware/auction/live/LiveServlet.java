@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mobiaware.servlet.action.Action;
 
-@WebServlet(name="LiveServlet", urlPatterns="/live")
+@WebServlet(name = "LiveServlet", urlPatterns = "/live")
 public class LiveServlet extends HttpServlet {
   private static final long serialVersionUID = -4886643592139535042L;
 

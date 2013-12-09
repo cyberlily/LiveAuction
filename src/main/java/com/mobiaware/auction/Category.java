@@ -64,37 +64,19 @@ public class Category {
 
   @Override
   public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
-    }
-
     if (obj == null) {
       return false;
     }
 
-    if (!(obj instanceof Category)) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
 
     Category other = (Category) obj;
 
-    if (getUid() != other.getUid()) {
-      return false;
-    }
-
-    if (getAuctionUid() != other.getAuctionUid()) {
-      return false;
-    }
-
-    if (getName() == null) {
-      if (other.getName() != null) {
-        return false;
-      }
-    } else if (!getName().equals(other.getName())) {
-      return false;
-    }
-
-    return true;
+    return Objects.equal(getUid(), other.getUid())
+        && Objects.equal(getAuctionUid(), other.getAuctionUid())
+        && Objects.equal(getName(), other.getName());
   }
 
   @Override

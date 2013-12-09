@@ -167,113 +167,31 @@ public class Item {
 
   @Override
   public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
-    }
-
     if (obj == null) {
       return false;
     }
 
-    if (!(obj instanceof Item)) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
 
     Item other = (Item) obj;
 
-    if (getUid() != other.getUid()) {
-      return false;
-    }
-
-    if (getAuctionUid() != other.getAuctionUid()) {
-      return false;
-    }
-
-    if (getItemNumber() == null) {
-      if (other.getItemNumber() != null) {
-        return false;
-      }
-    } else if (!getItemNumber().equals(other.getItemNumber())) {
-      return false;
-    }
-
-    if (getName() == null) {
-      if (other.getName() != null) {
-        return false;
-      }
-    } else if (!getName().equals(other.getName())) {
-      return false;
-    }
-
-    if (getDescription() == null) {
-      if (other.getDescription() != null) {
-        return false;
-      }
-    } else if (!getDescription().equals(other.getDescription())) {
-      return false;
-    }
-
-    if (getCategory() == null) {
-      if (other.getCategory() != null) {
-        return false;
-      }
-    } else if (!getCategory().equals(other.getCategory())) {
-      return false;
-    }
-
-    if (getSeller() == null) {
-      if (other.getSeller() != null) {
-        return false;
-      }
-    } else if (!getSeller().equals(other.getSeller())) {
-      return false;
-    }
-
-    if (Double.doubleToLongBits(getValPrice()) != Double.doubleToLongBits(other.getValPrice())) {
-      return false;
-    }
-
-    if (Double.doubleToLongBits(getMinPrice()) != Double.doubleToLongBits(other.getMinPrice())) {
-      return false;
-    }
-
-    if (Double.doubleToLongBits(getCurPrice()) != Double.doubleToLongBits(other.getCurPrice())) {
-      return false;
-    }
-
-    if (Double.doubleToLongBits(getIncPrice()) != Double.doubleToLongBits(other.getIncPrice())) {
-      return false;
-    }
-
-    if (getWinner() == null) {
-      if (other.getWinner() != null) {
-        return false;
-      }
-    } else if (!getWinner().equals(other.getWinner())) {
-      return false;
-    }
-
-    if (getBidCount() != other.getBidCount()) {
-      return false;
-    }
-
-    if (getWatchCount() != other.getWatchCount()) {
-      return false;
-    }
-
-    if (getUrl() == null) {
-      if (other.getUrl() != null) {
-        return false;
-      }
-    } else if (!getUrl().equals(other.getUrl())) {
-      return false;
-    }
-
-    if (getMulti() != other.getMulti()) {
-      return false;
-    }
-
-    return true;
+    return Objects.equal(getUid(), other.getUid())
+        && Objects.equal(getAuctionUid(), other.getAuctionUid())
+        && Objects.equal(getItemNumber(), other.getItemNumber())
+        && Objects.equal(getName(), other.getName())
+        && Objects.equal(getDescription(), other.getDescription())
+        && Objects.equal(getCategory(), other.getCategory())
+        && Objects.equal(getSeller(), other.getSeller())
+        && Objects.equal(getValPrice(), other.getValPrice())
+        && Objects.equal(getMinPrice(), other.getMinPrice())
+        && Objects.equal(getCurPrice(), other.getCurPrice())
+        && Objects.equal(getIncPrice(), other.getIncPrice())
+        && Objects.equal(getWinner(), other.getWinner())
+        && Objects.equal(getBidCount(), other.getBidCount())
+        && Objects.equal(getWatchCount(), other.getWatchCount())
+        && Objects.equal(getUrl(), other.getUrl()) && Objects.equal(getMulti(), other.getMulti());
   }
 
   @Override

@@ -79,40 +79,21 @@ public class Fund {
 
   @Override
   public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
-    }
-
     if (obj == null) {
       return false;
     }
 
-    if (!(obj instanceof Fund)) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
 
     Fund other = (Fund) obj;
 
-    if (getUid() != other.getUid()) {
-      return false;
-    }
-
-    if (getAuctionUid() != other.getAuctionUid()) {
-      return false;
-    }
-    if (getUserUid() != other.getUserUid()) {
-      return false;
-    }
-
-    if (Double.doubleToLongBits(getBidPrice()) != Double.doubleToLongBits(other.getBidPrice())) {
-      return false;
-    }
-
-    if (getBidDate() != other.getBidDate()) {
-      return false;
-    }
-
-    return true;
+    return Objects.equal(getUid(), other.getUid())
+        && Objects.equal(getAuctionUid(), other.getAuctionUid())
+        && Objects.equal(getUserUid(), other.getUserUid())
+        && Objects.equal(getBidPrice(), other.getBidPrice())
+        && Objects.equal(getBidDate(), other.getBidDate());
   }
 
   @Override

@@ -72,45 +72,20 @@ public class Device {
 
   @Override
   public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
-    }
-
     if (obj == null) {
       return false;
     }
 
-    if (!(obj instanceof Device)) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
 
     Device other = (Device) obj;
 
-    if (getUid() != other.getUid()) {
-      return false;
-    }
-
-    if (getUserUid() != other.getUserUid()) {
-      return false;
-    }
-
-    if (getDeviceId() == null) {
-      if (other.getDeviceId() != null) {
-        return false;
-      }
-    } else if (!getDeviceId().equals(other.getDeviceId())) {
-      return false;
-    }
-
-    if (getDeviceType() == null) {
-      if (other.getDeviceType() != null) {
-        return false;
-      }
-    } else if (!getDeviceType().equals(other.getDeviceType())) {
-      return false;
-    }
-
-    return true;
+    return Objects.equal(getUid(), other.getUid())
+        && Objects.equal(getUserUid(), other.getUserUid())
+        && Objects.equal(getDeviceId(), other.getDeviceId())
+        && Objects.equal(getDeviceType(), other.getDeviceType());
   }
 
   @Override

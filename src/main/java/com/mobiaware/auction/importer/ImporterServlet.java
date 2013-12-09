@@ -42,7 +42,7 @@ import org.slf4j.LoggerFactory;
 
 import com.mobiaware.servlet.HttpConstants;
 
-@WebServlet(name="ImporterServlet", urlPatterns="/import")
+@WebServlet(name = "ImporterServlet", urlPatterns = "/import")
 public class ImporterServlet extends HttpServlet {
   private static final long serialVersionUID = -5191381416329093341L;
 

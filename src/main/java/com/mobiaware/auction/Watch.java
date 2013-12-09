@@ -64,33 +64,19 @@ public class Watch {
 
   @Override
   public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
-    }
-
     if (obj == null) {
       return false;
     }
 
-    if (!(obj instanceof Watch)) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
 
     Watch other = (Watch) obj;
 
-    if (getUid() != other.getUid()) {
-      return false;
-    }
-
-    if (getItemUid() != other.getItemUid()) {
-      return false;
-    }
-
-    if (getUserUid() != other.getUserUid()) {
-      return false;
-    }
-
-    return true;
+    return Objects.equal(getUid(), other.getUid())
+        && Objects.equal(getItemUid(), other.getItemUid())
+        && Objects.equal(getUserUid(), other.getUserUid());
   }
 
   @Override

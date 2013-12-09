@@ -80,41 +80,19 @@ public class Auction {
 
   @Override
   public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
-    }
-
     if (obj == null) {
       return false;
     }
 
-    if (!(obj instanceof Auction)) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
 
     Auction other = (Auction) obj;
 
-    if (getUid() != other.getUid()) {
-      return false;
-    }
-
-    if (getName() == null) {
-      if (other.getName() != null) {
-        return false;
-      }
-    } else if (!getName().equals(other.getName())) {
-      return false;
-    }
-
-    if (getStartDate() != other.getStartDate()) {
-      return false;
-    }
-
-    if (getEndDate() != other.getEndDate()) {
-      return false;
-    }
-
-    return true;
+    return Objects.equal(getUid(), other.getUid()) && Objects.equal(getName(), other.getName())
+        && Objects.equal(getStartDate(), other.getStartDate())
+        && Objects.equal(getEndDate(), other.getEndDate());
   }
 
   @Override
