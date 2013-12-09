@@ -82,9 +82,8 @@ public class ItemActionMyWatchItemList extends Action {
 
     List<Watch> watches = getDataService().getWatchesByUser(_user.getUid());
     for (Watch watch : watches) {
-      Item item = Item.newBuilder().auctionUid(watch.getItemUid()).build();
+      Item item = Item.newBuilder().uid(watch.getItemUid()).build();
       _items.add(item);
-
     }
 
     _total = _items.size();

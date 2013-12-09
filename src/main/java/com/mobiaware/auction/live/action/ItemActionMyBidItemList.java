@@ -82,9 +82,8 @@ public class ItemActionMyBidItemList extends Action {
 
     List<Bid> bids = getDataService().getBidsByUser2(_user.getUid());
     for (Bid bid : bids) {
-      Item item = Item.newBuilder().auctionUid(bid.getItemUid()).build();
+      Item item = Item.newBuilder().uid(bid.getItemUid()).build();
       _items.add(item);
-
     }
 
     _total = _items.size();
