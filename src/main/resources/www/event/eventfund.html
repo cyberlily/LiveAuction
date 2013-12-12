@@ -3,19 +3,19 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="MobiAuction Event Page">
+	<meta name="description" content="MobiAuction Event Fund-A-Cause">
 	<meta name="author" content="mobiaware.com">
 
-	<title>MobiAuction Event Page</title>
+	<title>MobiAuction Event Fund-A-Cause</title>
 
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css">
 
 	<meta name="apple-itunes-app" content="app-id=584311424">
-	
+
 	<link rel="icon" type="image/png" href="..common/img/favicon.png"/>
-	
+
 	<style type="text/css">
 		body {
 			padding-top: 10px;
@@ -25,34 +25,49 @@
 			display:block;
 			margin:auto;
 		}
+		#fundACauseSumSpan {
+			font-size: 48px;
+			font-weight:bold;
+			text-align:center;
+			color:#216C2A;
+		}
+		#fundACauseLastSpan {
+			font-size: 36px;
+			font-weight:bold;
+			text-align:center;
+		}
 		.logo {
 			float: left;
 			height: 16px;
 			padding: 2px 0 0 2px;
 			width: 16px;
 		}
+		.money {
+			color:#216C2A;
+		}
 	</style>
 </head>
 <body>
-<div class="container-fluid">
-	<div class="hero-unit">
-		<div class="row-fluid">
-			<div class="span12">
-				Event Title<br/>
-				Event Date<br/>
-				Event Location<br/>
+	<div class="jumbotron">
+      	<div class="container">
+        	<h1>Fund-A-Cause</h1>
+        	<p>What cause are we supporting?</p>
+      	</div>
+		<div class="container">
+		      <div class="row">
+				<div class="span12">
+					<div class="row">
+						<center><div class="span12"><span id="fundACauseSumSpan"></span></div></center>
+					</div>
+					<div class="row">
+						<center><div class="span12"><span id="fundACauseLastSpan" class="center"></span></div></center>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row-fluid">
-		<div class="span12" style="text-align:center">
-			<h4>Download MobiAuction now!</h4>
-			<br/>
-			<a href="https://itunes.apple.com/us/app/mobiauction/id584311424?mt=8&amp;uo=4" target="itunes_store"><img src="http://r.mzstatic.com/images/web/linkmaker/badge_appstore-lrg.gif" alt="MobiAuction" style="border: 0;"/></a>
-		</div>
-	</div>
-	<hr/>
 </div>
+<hr>
 <div id="footer">
 	<img src="../common/img/logo.png" class="logo"/><span>mobiaware.&copy; All Rights Reserved 2010</span>
 </div>
@@ -60,5 +75,19 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js" type="text/javascript"></script>
 
+<script src="..//common/js/format.currency.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+//	var pusher = new Pusher('20b6d8eb4608a88592b8');
+//	var channel2 = pusher.subscribe('liveauction-fund');
+//
+//	channel2.bind('update', function(data) {
+//
+//		$('#fundACauseSumSpan').text(numberToCurrency(data.sum));
+//    	$('#fundACauseLastSpan').text('Thanks ' + data.user.firstName + '!');
+//	});
+
+</script>
 </body>
 </html>
