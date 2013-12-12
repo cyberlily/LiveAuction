@@ -41,7 +41,7 @@
 
     <dependency org="org.slf4j" name="slf4j-api" rev="1.6.6" conf="compile->default"/>
 	<dependency org="org.apache.tomcat" name="tomcat-servlet-api" rev="7.0.47" conf="provided->default"/>
-    <dependency org="org.apache.tomcat" name="tomcat-websocket-api" rev="7.0.47" conf="runtime->default"/>
+    <dependency org="org.apache.tomcat" name="tomcat-websocket-api" rev="7.0.47" conf="provided->default"/>
 	
 	<exclude type="source" ext="*" conf="*" />
     <exclude type="javadoc" ext="*" conf="*" />

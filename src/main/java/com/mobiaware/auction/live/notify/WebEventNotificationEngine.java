@@ -29,13 +29,17 @@ public class WebEventNotificationEngine implements NotificationEngine {
   private static final String NAME = WebEventNotificationEngine.class.getSimpleName();
   private static final Logger LOG = LoggerFactory.getLogger(NAME);
 
-  public static final String NOTIFICATION_REGISTRY = NAME + ".registry";
+  private static volatile WebEventNotificationEngine instance = new WebEventNotificationEngine();
 
   private final Set<NotificationServlet> _connections =
       new CopyOnWriteArraySet<NotificationServlet>();
 
-  public WebEventNotificationEngine() {
+  private WebEventNotificationEngine() {
     // empty
+  }
+
+  public static WebEventNotificationEngine getInstance() {
+    return instance;
   }
 
   @Override
@@ -71,19 +75,23 @@ public class WebEventNotificationEngine implements NotificationEngine {
     if (LOG.isDebugEnabled()) {
       LOG.debug("Sending web notification. [" + notification.getChannel() + "]");
     }
-
-    for (NotificationServlet connection : _connections) {
-      try {
-        connection.getWebSocketSession().getBasicRemote().sendText(notification.getData());
-      } catch (IOException e) {
-        LOG.error("!EXCEPTION!", e);
-
-        _connections.remove(connection);
-
+    
+    String payload = "{\"" + notification.getChannel() + "\":" + notification.getData() + "}";
+    
+    synchronized (this) {
+      for (NotificationServlet connection : _connections) {
         try {
-          connection.getWebSocketSession().close();
-        } catch (IOException e1) {
-          // ignore
+          connection.getWebSocketSession().getBasicRemote().sendText(payload);
+        } catch (IOException e) {
+          LOG.error("!EXCEPTION!", e);
+
+          _connections.remove(connection);
+
+          try {
+            connection.getWebSocketSession().close();
+          } catch (IOException e1) {
+            // ignore
+          }
         }
       }
     }

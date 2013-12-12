@@ -32,11 +32,11 @@ public class AppleNotificationEngine implements NotificationEngine {
   private static final String NAME = AppleNotificationEngine.class.getSimpleName();
   private static final Logger LOG = LoggerFactory.getLogger(NAME);
 
-  public static final String NOTIFICATION_REGISTRY = NAME + ".registry";
+  private static volatile AppleNotificationEngine instance = new AppleNotificationEngine();
 
   private final ApnsService _service;
 
-  public AppleNotificationEngine() {
+  private AppleNotificationEngine() {
     PropertyManager pm = new PropertyManager(System.getProperty("PARAM1"));
 
     String keystore = pm.getString("apns.keystore");
@@ -65,6 +65,10 @@ public class AppleNotificationEngine implements NotificationEngine {
     }
 
     _service = builder.build();
+  }
+
+  public static AppleNotificationEngine getInstance() {
+    return instance;
   }
 
   public ApnsService getApnsService() {
@@ -105,8 +109,8 @@ public class AppleNotificationEngine implements NotificationEngine {
       LOG.debug("Sending Apple notifications (APNS) [" + notification.getPayload() + "]");
     }
 
-    synchronized (_service) {
-      _service.push(notification.getDeviceTokens(), notification.getPayload());
+    synchronized (this) {
+      getApnsService().push(notification.getDeviceTokens(), notification.getPayload());
     }
   }
 }

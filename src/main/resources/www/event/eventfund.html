@@ -12,19 +12,9 @@
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css">
 
-	<meta name="apple-itunes-app" content="app-id=584311424">
-
 	<link rel="icon" type="image/png" href="..common/img/favicon.png"/>
 
 	<style type="text/css">
-		body {
-			padding-top: 10px;
-			padding-bottom: 10px;
-		}
-		div img {
-			display:block;
-			margin:auto;
-		}
 		#fundACauseSumSpan {
 			font-size: 48px;
 			font-weight:bold;
@@ -66,28 +56,55 @@
 			</div>
 		</div>
 	</div>
-</div>
-<hr>
-<div id="footer">
-	<img src="../common/img/logo.png" class="logo"/><span>mobiaware.&copy; All Rights Reserved 2010</span>
-</div>
+	<hr>
+	<div id="footer">
+		<img src="../common/img/logo.png" class="logo"/><span>mobiaware.&copy; All Rights Reserved 2010</span>
+	</div>
 
-<script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js" type="text/javascript"></script>
 
-<script src="..//common/js/format.currency.js" type="text/javascript"></script>
+	<script src="..//common/js/format.currency.js" type="text/javascript"></script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
+   		var notifications = {};
 
-//	var pusher = new Pusher('20b6d8eb4608a88592b8');
-//	var channel2 = pusher.subscribe('liveauction-fund');
-//
-//	channel2.bind('update', function(data) {
-//
-//		$('#fundACauseSumSpan').text(numberToCurrency(data.sum));
-//    	$('#fundACauseLastSpan').text('Thanks ' + data.user.firstName + '!');
-//	});
+   		notifications.socket = null;
 
-</script>
+   		notifications.connect = (function(host) {
+       		if ('WebSocket' in window) {
+           		notifications.socket = new WebSocket(host);
+       		} else if ('MozWebSocket' in window) {
+           		notifications.socket = new MozWebSocket(host);
+       		} else {
+           		return;
+       		}
+
+       		notifications.socket.onopen = function () {
+           		// nothing
+       		};
+
+       		notifications.socket.onclose = function () {
+           		// nothing
+       		};
+
+       		notifications.socket.onmessage = function (message) {
+				var json = $.parseJSON(message.data);
+				
+				var data = json['liveauction-fund'];
+
+				if (data) {
+					$('#fundACauseSumSpan').text(numberToCurrency(data.sum));
+					$('#fundACauseLastSpan').text('Thanks ' + data.user.firstName + '!');
+				}
+       		};
+   		});
+
+   		notifications.initialize = function() {
+       		notifications.connect('ws://localhost:8080/liveauction/notify');
+   		};
+
+		notifications.initialize();
+	</script>
 </body>
 </html>

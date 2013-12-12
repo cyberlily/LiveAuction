@@ -14,8 +14,6 @@
 
 package com.mobiaware.auction.live;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 import javax.websocket.CloseReason;
 import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
@@ -28,40 +26,34 @@ import org.slf4j.LoggerFactory;
 
 import com.mobiaware.auction.live.notify.WebEventNotificationEngine;
 
-@ServerEndpoint(value="/live/notify")
+@ServerEndpoint("/notify")
 public class NotificationServlet {
   private static final String NAME = NotificationServlet.class.getSimpleName();
   private static final Logger LOG = LoggerFactory.getLogger(NAME);
 
   private Session _webSocketSession;
-  private HttpSession _httpSession;
 
   public Session getWebSocketSession() {
     return _webSocketSession;
   }
 
-  public HttpSession getHttpSession() {
-    return _httpSession;
-  }
-
   @OnOpen
   public void onOpen(final Session session, final EndpointConfig config) {
-    _webSocketSession = session;
-    _httpSession = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
+    if (LOG.isDebugEnabled()) {
+      LOG.debug("Websocket open. + [" + session.getId() + "]");
+    }
 
-    ServletContext context = _httpSession.getServletContext();
-    WebEventNotificationEngine engine =
-        (WebEventNotificationEngine) context
-            .getAttribute(WebEventNotificationEngine.NOTIFICATION_REGISTRY);
-    engine.join(this);
+    _webSocketSession = session;
+
+    WebEventNotificationEngine.getInstance().join(this);
   }
 
   @OnClose
   public void onClose(final Session session, final CloseReason closeReason) {
-    ServletContext context = _httpSession.getServletContext();
-    WebEventNotificationEngine engine =
-        (WebEventNotificationEngine) context
-            .getAttribute(WebEventNotificationEngine.NOTIFICATION_REGISTRY);
-    engine.leave(this);
+    if (LOG.isDebugEnabled()) {
+      LOG.debug("Websocket close. + [" + session.getId() + "]");
+    }
+
+    WebEventNotificationEngine.getInstance().leave(this);
   }
 }

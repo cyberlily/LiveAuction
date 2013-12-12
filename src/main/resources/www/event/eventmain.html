@@ -12,21 +12,11 @@
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css">
 
-	<link href="..common/lib/gritter/jquery.gritter.css" rel="stylesheet" type="text/css">
-
-	<meta name="apple-itunes-app" content="app-id=584311424">
+	<link href="../common/lib/gritter/jquery.gritter.css" rel="stylesheet" type="text/css">
 
 	<link rel="icon" type="image/png" href="..common/img/favicon.png"/>
 
 	<style type="text/css">
-		body {
-			padding-top: 10px;
-			padding-bottom: 10px;
-		}
-		div img {
-			display:block;
-			margin:auto;
-		}
 		#raised {
 			-webit-style:none;
 			position: relative;
@@ -142,6 +132,7 @@
 
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
 
 	<script src="../common/lib/gritter/jquery.gritter.min.js" type="text/javascript"></script>
 	<script src="../common/js/format.currency.js" type="text/javascript"></script>
@@ -185,18 +176,52 @@
 			refreshdiv('summary5');
 			refreshdiv('summary6');
 		}
+	</script>
 	
-	
-//	channel.bind('update', function(data) {
-//		$.gritter.add({
-//	        	title: 'Item #' + data.item.itemNumber,
-//	        	text: 'Bid price: ' + numberToCurrency(data.item.curPrice) + ' Total bids: ' + data.item.bidCount,
-//	       		image: 'img/notify.png',
-//	       		sticky: false,
-//	       		time: ''
-//		});
-//	});
+	<script type="text/javascript">
+   		var notifications = {};
 
+   		notifications.socket = null;
+
+   		notifications.connect = (function(host) {
+       		if ('WebSocket' in window) {
+           		notifications.socket = new WebSocket(host);
+       		} else if ('MozWebSocket' in window) {
+           		notifications.socket = new MozWebSocket(host);
+       		} else {
+           		return;
+       		}
+
+       		notifications.socket.onopen = function () {
+           		// nothing
+       		};
+
+       		notifications.socket.onclose = function () {
+           		// nothing
+       		};
+
+       		notifications.socket.onmessage = function (message) {
+				var json = $.parseJSON(message.data);
+				
+				var data = json['liveauction-item'];
+
+				if (data) {
+					$.gritter.add({
+						title: 'Item #' + data.item.itemNumber,
+				        text: 'Bid price: ' + numberToCurrency(data.item.curPrice) + ' Total bids: ' + data.item.bidCount,
+				       	image: '../common/img/notify.png',
+				       	sticky: false,
+				       	time: ''
+					});
+				}
+       		};
+   		});
+
+   		notifications.initialize = function() {
+       		notifications.connect('ws://localhost:8080/liveauction/notify');
+   		};
+
+		notifications.initialize();
 	</script>
 </body>
 </html>

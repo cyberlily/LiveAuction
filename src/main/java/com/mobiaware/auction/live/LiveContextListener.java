@@ -26,28 +26,23 @@ import com.mobiaware.auction.live.notify.WebEventNotificationEngine;
 
 @WebListener
 public class LiveContextListener implements ServletContextListener {
-  private transient final AppleNotificationEngine _appleEngine = new AppleNotificationEngine();
-  private transient final WebEventNotificationEngine _webEngine = new WebEventNotificationEngine();
-
   private transient final EventBus _eventBus = new EventBus();
 
   @Override
   public void contextInitialized(final ServletContextEvent event) {
-    _appleEngine.start();
-    _webEngine.start();
+    AppleNotificationEngine.getInstance().start();
+    WebEventNotificationEngine.getInstance().start();
 
-    _eventBus.register(_appleEngine);
-    _eventBus.register(_webEngine);
+    _eventBus.register(AppleNotificationEngine.getInstance());
+    _eventBus.register(WebEventNotificationEngine.getInstance());
 
     ServletContext context = event.getServletContext();
-    context.setAttribute(AppleNotificationEngine.NOTIFICATION_REGISTRY, _appleEngine);
-    context.setAttribute(WebEventNotificationEngine.NOTIFICATION_REGISTRY, _webEngine);
     context.setAttribute(NotificationEngine.EVENTBUS_REGISTRY, _eventBus);
   }
 
   @Override
   public void contextDestroyed(final ServletContextEvent event) {
-    _appleEngine.stop();
-    _webEngine.stop();
+    AppleNotificationEngine.getInstance().stop();
+    WebEventNotificationEngine.getInstance().stop();
   }
 }
