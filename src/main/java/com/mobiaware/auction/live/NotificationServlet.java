@@ -17,16 +17,19 @@ package com.mobiaware.auction.live;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.websocket.CloseReason;
-import javax.websocket.Endpoint;
 import javax.websocket.EndpointConfig;
+import javax.websocket.OnClose;
+import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.ServerEndpoint;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mobiaware.auction.live.notify.WebEventNotificationEngine;
 
-public class NotificationServlet extends Endpoint {
+@ServerEndpoint(value="/live/notify")
+public class NotificationServlet {
   private static final String NAME = NotificationServlet.class.getSimpleName();
   private static final Logger LOG = LoggerFactory.getLogger(NAME);
 
@@ -41,7 +44,7 @@ public class NotificationServlet extends Endpoint {
     return _httpSession;
   }
 
-  @Override
+  @OnOpen
   public void onOpen(final Session session, final EndpointConfig config) {
     _webSocketSession = session;
     _httpSession = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
@@ -53,7 +56,7 @@ public class NotificationServlet extends Endpoint {
     engine.join(this);
   }
 
-  @Override
+  @OnClose
   public void onClose(final Session session, final CloseReason closeReason) {
     ServletContext context = _httpSession.getServletContext();
     WebEventNotificationEngine engine =

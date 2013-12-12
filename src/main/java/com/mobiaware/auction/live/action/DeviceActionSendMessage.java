@@ -40,12 +40,12 @@ public class DeviceActionSendMessage extends Action {
       return;
     }
 
-    List<Device> localList = getDataService().getDevices(0, 500, null, null);
-    ArrayList<Device> localArrayList = new ArrayList<Device>(new HashSet<Device>(localList));
+    List<Device> devices = getDataService().getDevices(0, 500, null, null);
+    List<Device> filteredDevices = new ArrayList<Device>(new HashSet<Device>(devices));
 
     ServletContext context = request.getServletContext();
     EventBus eventBus = (EventBus) context.getAttribute(NotificationEngine.EVENTBUS_REGISTRY);
-    eventBus.post(new AppleNotification(localArrayList, msg));
+    eventBus.post(new AppleNotification(filteredDevices, msg));
 
     outputJsonReponse(request, response, this);
   }
