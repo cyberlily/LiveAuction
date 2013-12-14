@@ -1,3 +1,6 @@
 
 bin/
 build/
+ant-eclipse/
+.classpath
+.project
