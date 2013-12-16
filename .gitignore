@@ -4,3 +4,5 @@ build/
 ant-eclipse/
 .classpath
 .project
+
+src/main/webapp/liveauction.xml
