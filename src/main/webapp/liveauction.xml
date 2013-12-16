@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <database>
+		<!-- 
+        Amazon RDS limits apply!
+        t1.micro: 34 supported connections
+        m1.small: 150 supported connections
+        m1.large: 640 supported connections
+        m1.xlarge: 1263 supported connections
+        m2.xlarge: 1441 supported connections
+        m2.2xlarge: 2900 supported connections
+        m2.4xlarge: 5816 supported connections 
+        -->
+        <maxconn>34</maxconn>
+        <minconn>10</minconn>
+    </database>
+
+    <apns>
+        <maxconn>5</maxconn>
+    </apns>
+</config>
