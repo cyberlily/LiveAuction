@@ -135,6 +135,7 @@
     <war basedir="${war.dir}" destfile="${build.base.dir}/${build.war.name}" webxml="${war.webxml}">
       <classes dir="${build.dir}" includes="**/*.class" />
       <lib dir="${build.lib.dir}"/>
+      <zipfileset dir="${src.resources}" includes="*" prefix="WEB-INF/classes"/>
     </war>
   </target>
 
