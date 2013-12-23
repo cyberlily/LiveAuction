@@ -146,6 +146,8 @@
         <fileset dir="${build.lib.dir}" includes="**/*"/> 
         <fileset dir="${build.base.dir}" includes="**/*"/> 
     </delete>  
+  	
+  	<delete dir="${build.base.dir}" quiet="true" failonerror="false"/>
   </target>
 
   <target name="clean-everything" depends="clean,clean-ivy,clean-ant-eclipse,clean-eclipse">
