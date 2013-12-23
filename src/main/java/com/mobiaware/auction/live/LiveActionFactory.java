@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 
 import com.google.common.base.Preconditions;
+import com.mobiaware.auction.live.action.AuctionActionStart;
+import com.mobiaware.auction.live.action.AuctionActionStop;
 import com.mobiaware.auction.live.action.DeviceActionSendMessage;
 import com.mobiaware.auction.live.action.ItemActionBid;
 import com.mobiaware.auction.live.action.ItemActionFundACause;
@@ -56,6 +58,10 @@ public class LiveActionFactory {
       return (new ItemActionFundACause());
     } else if (StringUtils.equalsIgnoreCase(paction, HttpConstants.ACTION_DEVICEMESSAGE)) {
       return (new DeviceActionSendMessage());
+    } else if (StringUtils.equalsIgnoreCase(paction, HttpConstants.ACTION_AUCTIONSTART)) {
+      return (new AuctionActionStart());
+    } else if (StringUtils.equalsIgnoreCase(paction, HttpConstants.ACTION_AUCTIONSTOP)) {
+      return (new AuctionActionStop());
     }
 
     return (new InvalidAction());

@@ -62,6 +62,10 @@ public class Auction {
 
   @JsonProperty("active")
   public boolean isActive() {
+    if (_endDate.isBefore(_startDate)) {
+      return false;
+    }
+    
     return new Interval(_startDate, _endDate).contains(new DateTime());
   }
 

@@ -27,6 +27,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mobiaware.servlet.HttpConstants;
 
 public class HttpResponseHelpers {
+
+  
   private static final String CONTENT_TYPE = "application/json";
   private static final String CHARACTER_ENCODING = "UTF-8";
 

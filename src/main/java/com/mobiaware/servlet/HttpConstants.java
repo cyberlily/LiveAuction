@@ -54,6 +54,8 @@ public interface HttpConstants {
   public static final String ACTION_AUCTIONLISTCNT = "gkh";
   public static final String ACTION_AUCTIONEDIT = "gxk";
   public static final String ACTION_AUCTIONDELETE = "sbt";
+  public static final String ACTION_AUCTIONSTART = "ojh";
+  public static final String ACTION_AUCTIONSTOP = "kfc";
 
   public static final String ACTION_CATEGORYLIST = "gje";
   public static final String ACTION_CATEGORYLISTCNT = "ogc";
