@@ -35,6 +35,7 @@
     <dependency org="com.codahale.metrics" name="metrics-healthchecks" rev="3.0.1" conf="runtime->default"/>
     <dependency org="com.codahale.metrics" name="metrics-servlets" rev="3.0.1" conf="runtime->default"/>
     <dependency org="org.mindrot" name="jbcrypt" rev="0.3m" conf="runtime->default"/>
+    <dependency org="com.thetransactioncompany" name="cors-filter" rev="1.8" conf="runtime->default"/>
 
  	<dependency org="junit" name="junit" rev="4.11" conf="test->default"/>
     <dependency org="org.mockito" name="mockito-all" rev="1.9.5" conf="test->default"/>
@@ -42,7 +43,7 @@
     <dependency org="org.slf4j" name="slf4j-api" rev="1.6.6" conf="compile->default"/>
 	<dependency org="org.apache.tomcat" name="tomcat-servlet-api" rev="7.0.47" conf="provided->default"/>
     <dependency org="org.apache.tomcat" name="tomcat-websocket-api" rev="7.0.47" conf="provided->default"/>
-	
+    
 	<exclude type="source" ext="*" conf="*" />
     <exclude type="javadoc" ext="*" conf="*" />
     <exclude type="license" ext="*" conf="*" />
