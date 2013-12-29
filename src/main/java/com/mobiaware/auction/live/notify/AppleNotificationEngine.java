@@ -41,9 +41,8 @@ public class AppleNotificationEngine implements NotificationEngine {
 
     String keystore = pm.getString("apns.keystore");
     String password = pm.getString("apns.password");
+    boolean isprod = Boolean.parseBoolean(pm.getString("apns.production"));
     int maxconn = pm.getInt("apns.maxconn");
-
-    boolean isProd = (keystore.toLowerCase().indexOf("prod") >= 0);
 
     InputStream is = null;
     ApnsServiceBuilder builder = APNS.newService();
@@ -53,7 +52,7 @@ public class AppleNotificationEngine implements NotificationEngine {
 
       builder.withCert(is, password).asPool(maxconn);
 
-      if (isProd) {
+      if (isprod) {
         builder.withProductionDestination();
       } else {
         builder.withSandboxDestination();
