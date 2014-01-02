@@ -126,6 +126,12 @@ public class ItemActionBid extends Action {
 
     Bid maxbid = getDataService().getMaxBidForItem(item.getUid());
 
+    if (pprice < (maxbid.getBidPrice() + item.getIncPrice())) {
+      addError(ErrorConstants.E_206, ErrorConstants.E_206_MSG);
+      outputJsonReponse(response, this);
+      return;    
+    }
+    
     Bid bid = Bid.newBuilder().itemUid(pitemuid).userUid(_user.getUid()).bidPrice(pprice).build();
 
     _item = getDataService().addBid(bid); // record bid (ALL bids get recorded)

@@ -39,6 +39,9 @@ public interface ErrorConstants {
   public static final String E_205 = "205";
   public static final String E_205_MSG = "Bid not accepted. User is not valid.";
 
+  public static final String E_206 = "206";
+  public static final String E_206_MSG = "Bid not accepted. Increment is not valid.";
+  
   public static final String E_301 = "301";
   public static final String E_301_MSG = "Watch not added. The item is not valid.";
 
