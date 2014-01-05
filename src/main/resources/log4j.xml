@@ -8,17 +8,9 @@
         </layout>
     </appender>
 
-    <appender name="FA" class="org.apache.log4j.FileAppender" >
-        <param name="file" value="${catalina.base}/logs/tail_catalina.log" />
-        <layout class="org.apache.log4j.PatternLayout" >
-          <param name="ConversionPattern" value="%d{d/M/yy H:mm:ss a} %p: [%t] [%c] %m%n" />
-        </layout>
-    </appender>
-
     <root>
-        <level value="INFO" />
+        <level value="DEBUG" />
         <appender-ref ref="CA" />
-        <appender-ref ref="FA" />
     </root>
 
 </log4j:configuration>
