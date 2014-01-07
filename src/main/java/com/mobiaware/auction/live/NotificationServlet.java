@@ -24,7 +24,7 @@ import javax.websocket.server.ServerEndpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mobiaware.auction.live.notify.WebEventNotificationEngine;
+import com.mobiaware.auction.live.notify.WebNotificationEngine;
 
 @ServerEndpoint("/notify")
 public class NotificationServlet {
@@ -45,7 +45,7 @@ public class NotificationServlet {
 
     _webSocketSession = session;
 
-    WebEventNotificationEngine.getInstance().join(this);
+    WebNotificationEngine.getInstance().join(this);
   }
 
   @OnClose
@@ -54,6 +54,6 @@ public class NotificationServlet {
       LOG.debug("Websocket close. + [" + session.getId() + "]");
     }
 
-    WebEventNotificationEngine.getInstance().leave(this);
+    WebNotificationEngine.getInstance().leave(this);
   }
 }

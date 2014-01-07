@@ -16,8 +16,8 @@ import com.google.common.eventbus.EventBus;
 import com.mobiaware.auction.Device;
 import com.mobiaware.auction.data.DataService;
 import com.mobiaware.auction.data.MySqlDataServiceImpl;
-import com.mobiaware.auction.live.notify.AppleNotification;
 import com.mobiaware.auction.live.notify.NotificationEngine;
+import com.mobiaware.auction.live.notify.PushNotification;
 import com.mobiaware.servlet.HttpConstants;
 import com.mobiaware.servlet.action.Action;
 
@@ -45,7 +45,7 @@ public class DeviceActionSendMessage extends Action {
 
     ServletContext context = request.getServletContext();
     EventBus eventBus = (EventBus) context.getAttribute(NotificationEngine.EVENTBUS_REGISTRY);
-    eventBus.post(new AppleNotification(filteredDevices, msg));
+    eventBus.post(new PushNotification(filteredDevices, msg));
 
     outputJsonReponse(request, response, this);
   }

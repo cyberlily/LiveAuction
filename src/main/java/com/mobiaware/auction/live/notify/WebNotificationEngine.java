@@ -25,20 +25,20 @@ import com.google.common.base.Preconditions;
 import com.google.common.eventbus.Subscribe;
 import com.mobiaware.auction.live.NotificationServlet;
 
-public class WebEventNotificationEngine implements NotificationEngine {
-  private static final String NAME = WebEventNotificationEngine.class.getSimpleName();
+public class WebNotificationEngine implements NotificationEngine {
+  private static final String NAME = WebNotificationEngine.class.getSimpleName();
   private static final Logger LOG = LoggerFactory.getLogger(NAME);
 
-  private static volatile WebEventNotificationEngine instance = new WebEventNotificationEngine();
+  private static volatile WebNotificationEngine instance = new WebNotificationEngine();
 
   private final Set<NotificationServlet> _connections =
       new CopyOnWriteArraySet<NotificationServlet>();
 
-  private WebEventNotificationEngine() {
+  private WebNotificationEngine() {
     // empty
   }
 
-  public static WebEventNotificationEngine getInstance() {
+  public static WebNotificationEngine getInstance() {
     return instance;
   }
 

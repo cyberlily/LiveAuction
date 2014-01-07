@@ -18,28 +18,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mobiaware.auction.Device;
-import com.notnoop.apns.APNS;
-import com.notnoop.apns.PayloadBuilder;
+import com.relayrides.pushy.apns.util.ApnsPayloadBuilder;
+import com.relayrides.pushy.apns.util.SimpleApnsPushNotification;
+import com.relayrides.pushy.apns.util.TokenUtil;
 
-public class AppleNotification {
-  private final List<String> _deviceTokens = new ArrayList<String>();;
+public class PushNotification {
+  private final List<SimpleApnsPushNotification> _notifications =
+      new ArrayList<SimpleApnsPushNotification>();
   private final String _payload;
 
-  public AppleNotification(final List<Device> devices, final String message) {
-    PayloadBuilder payloadBuilder = APNS.newPayload().alertBody(message).sound("default");
+  public PushNotification(final List<Device> devices, final String message) {
+    ApnsPayloadBuilder payloadBuilder = new ApnsPayloadBuilder();
+    payloadBuilder.setAlertBody(message);
 
-    if (payloadBuilder.isTooLong()) {
-      payloadBuilder = payloadBuilder.shrinkBody();
-    }
-    _payload = payloadBuilder.copy().build();
+    _payload = payloadBuilder.buildWithDefaultMaximumLength();
 
     for (Device device : devices) {
-      _deviceTokens.add(device.getDeviceId());
+      byte[] token = TokenUtil.tokenStringToByteArray(device.getDeviceId());
+      _notifications.add(new SimpleApnsPushNotification(token, getPayload()));
     }
   }
 
-  public List<String> getDeviceTokens() {
-    return _deviceTokens;
+  public List<SimpleApnsPushNotification> getNotifications() {
+    return _notifications;
   }
 
   public String getPayload() {

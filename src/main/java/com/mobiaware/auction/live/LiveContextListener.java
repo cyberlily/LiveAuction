@@ -20,9 +20,9 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import com.google.common.eventbus.EventBus;
-import com.mobiaware.auction.live.notify.AppleNotificationEngine;
 import com.mobiaware.auction.live.notify.NotificationEngine;
-import com.mobiaware.auction.live.notify.WebEventNotificationEngine;
+import com.mobiaware.auction.live.notify.PushNotificationEngine;
+import com.mobiaware.auction.live.notify.WebNotificationEngine;
 
 @WebListener
 public class LiveContextListener implements ServletContextListener {
@@ -30,11 +30,11 @@ public class LiveContextListener implements ServletContextListener {
 
   @Override
   public void contextInitialized(final ServletContextEvent event) {
-    AppleNotificationEngine.getInstance().start();
-    WebEventNotificationEngine.getInstance().start();
+    PushNotificationEngine.getInstance().start();
+    WebNotificationEngine.getInstance().start();
 
-    _eventBus.register(AppleNotificationEngine.getInstance());
-    _eventBus.register(WebEventNotificationEngine.getInstance());
+    _eventBus.register(PushNotificationEngine.getInstance());
+    _eventBus.register(WebNotificationEngine.getInstance());
 
     ServletContext context = event.getServletContext();
     context.setAttribute(NotificationEngine.EVENTBUS_REGISTRY, _eventBus);
@@ -42,7 +42,7 @@ public class LiveContextListener implements ServletContextListener {
 
   @Override
   public void contextDestroyed(final ServletContextEvent event) {
-    AppleNotificationEngine.getInstance().stop();
-    WebEventNotificationEngine.getInstance().stop();
+    PushNotificationEngine.getInstance().stop();
+    WebNotificationEngine.getInstance().stop();
   }
 }

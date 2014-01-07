@@ -45,8 +45,8 @@ import com.mobiaware.auction.Item;
 import com.mobiaware.auction.User;
 import com.mobiaware.auction.data.DataService;
 import com.mobiaware.auction.data.MySqlDataServiceImpl;
-import com.mobiaware.auction.live.notify.AppleNotification;
 import com.mobiaware.auction.live.notify.NotificationEngine;
+import com.mobiaware.auction.live.notify.PushNotification;
 import com.mobiaware.auction.live.notify.WebNotification;
 import com.mobiaware.servlet.HttpConstants;
 import com.mobiaware.servlet.action.Action;
@@ -176,7 +176,7 @@ public class ItemActionBid extends Action {
         && (bid.getUserUid() != maxbid.getUserUid())) {
       List<Device> devices = getDataService().getDevicesForUser(maxbid.getUserUid());
       String alertMessage = "You have been outbid on Item# " + item.getItemNumber() + ".";
-      eventBus.post(new AppleNotification(devices, alertMessage));
+      eventBus.post(new PushNotification(devices, alertMessage));
     }
 
     outputJsonReponse(response, jsonData);
