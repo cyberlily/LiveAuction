@@ -98,6 +98,8 @@ public class Bid {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this).toString();
+    return Objects.toStringHelper(getClass()).add("uid", getUid()).add("itemuid", getItemUid())
+        .add("useruid", getUserUid()).add("bidprice", getBidPrice()).add("biddate", getBidDate())
+        .toString();
   }
 }

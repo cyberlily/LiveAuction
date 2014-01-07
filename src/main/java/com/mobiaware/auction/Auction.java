@@ -65,7 +65,7 @@ public class Auction {
     if (_endDate.isBefore(_startDate)) {
       return false;
     }
-    
+
     return new Interval(_startDate, _endDate).contains(new DateTime());
   }
 
@@ -101,6 +101,7 @@ public class Auction {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this).toString();
+    return Objects.toStringHelper(getClass()).add("uid", getUid()).add("name", getName())
+        .add("active", isActive()).toString();
   }
 }

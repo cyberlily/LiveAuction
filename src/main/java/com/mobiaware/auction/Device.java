@@ -90,6 +90,7 @@ public class Device {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this).toString();
+    return Objects.toStringHelper(getClass()).add("uid", getUid()).add("useruid", getUserUid())
+        .add("deviceid", getDeviceId()).toString();
   }
 }

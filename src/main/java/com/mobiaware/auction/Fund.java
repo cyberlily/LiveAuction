@@ -98,6 +98,8 @@ public class Fund {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this).toString();
+    return Objects.toStringHelper(getClass()).add("uid", getUid())
+        .add("auctionuid", getAuctionUid()).add("useruid", getUserUid())
+        .add("bidprice", getBidPrice()).add("biddate", getBidDate()).toString();
   }
 }

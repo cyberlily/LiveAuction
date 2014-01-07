@@ -81,6 +81,7 @@ public class Watch {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this).toString();
+    return Objects.toStringHelper(getClass()).add("uid", getUid()).add("itemuid", getItemUid())
+        .add("useruid", getUserUid()).toString();
   }
 }

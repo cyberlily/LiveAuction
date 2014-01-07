@@ -122,6 +122,8 @@ public class User {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this).toString();
+    return Objects.toStringHelper(getClass()).add("uid", getUid())
+        .add("biddernumber", getBidderNumber()).add("firstname", getFirstName())
+        .add("lastname", getLastName()).toString();
   }
 }

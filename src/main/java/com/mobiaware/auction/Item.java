@@ -196,6 +196,7 @@ public class Item {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this).toString();
+    return Objects.toStringHelper(getClass()).add("uid", getUid())
+        .add("itemnumber", getItemNumber()).add("name", getName()).toString();
   }
 }

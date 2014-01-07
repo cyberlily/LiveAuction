@@ -81,6 +81,7 @@ public class Category {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this).toString();
+    return Objects.toStringHelper(getClass()).add("uid", getUid()).add("name", getName())
+        .toString();
   }
 }
