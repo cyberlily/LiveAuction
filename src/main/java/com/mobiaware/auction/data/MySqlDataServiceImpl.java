@@ -1,15 +1,14 @@
 /*
  * Copyright (c) 2010 mobiaware.com.
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 
 package com.mobiaware.auction.data;
@@ -148,8 +147,7 @@ public class MySqlDataServiceImpl implements DataService {
   }
 
   @Override
-  public List<Device> getDevices(final int start, final int length, final String sort,
-      final String dir) {
+  public List<Device> getDevices(final int start, final int length, final String sort, final String dir) {
     List<Device> objs = new ArrayList<Device>();
 
     Connection conn = null;
@@ -169,8 +167,8 @@ public class MySqlDataServiceImpl implements DataService {
 
       while (rs.next()) {
         DeviceBuilder builder =
-            Device.newBuilder().uid(rs.getInt("UID")).userUid(rs.getInt("USERUID"))
-                .deviceId(rs.getString("DEVICEID")).deviceType(rs.getString("DEVICETYPE"));
+            Device.newBuilder().uid(rs.getInt("UID")).userUid(rs.getInt("USERUID")).deviceId(rs.getString("DEVICEID"))
+                .deviceType(rs.getString("DEVICETYPE"));
 
         objs.add(builder.build());
       }
@@ -236,8 +234,8 @@ public class MySqlDataServiceImpl implements DataService {
 
       while (rs.next()) {
         DeviceBuilder builder =
-            Device.newBuilder().uid(rs.getInt("UID")).userUid(rs.getInt("USERUID"))
-                .deviceId(rs.getString("DEVICEID")).deviceType(rs.getString("DEVICETYPE"));
+            Device.newBuilder().uid(rs.getInt("UID")).userUid(rs.getInt("USERUID")).deviceId(rs.getString("DEVICEID"))
+                .deviceType(rs.getString("DEVICETYPE"));
 
         objs.add(builder.build());
       }
@@ -271,8 +269,7 @@ public class MySqlDataServiceImpl implements DataService {
       rs = stmt.executeQuery();
 
       if (rs.next()) {
-        AuctionBuilder builder =
-            Auction.newBuilder().uid(rs.getInt("UID")).name(rs.getString("NAME"));
+        AuctionBuilder builder = Auction.newBuilder().uid(rs.getInt("UID")).name(rs.getString("NAME"));
 
         Date startdate = rs.getDate("STARTDATE");
         if (startdate != null) {
@@ -293,16 +290,14 @@ public class MySqlDataServiceImpl implements DataService {
     }
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("AUCTION [method:{} result:{}]", new Object[] {"get",
-          obj != null ? obj.toString() : "[error]"});
+      LOG.debug("AUCTION [method:{} result:{}]", new Object[] {"get", obj != null ? obj.toString() : "[error]"});
     }
 
     return obj;
   }
 
   @Override
-  public List<Auction> getAuctions(final int start, final int length, final String sort,
-      final String dir) {
+  public List<Auction> getAuctions(final int start, final int length, final String sort, final String dir) {
     List<Auction> objs = new ArrayList<Auction>();
 
     Connection conn = null;
@@ -321,8 +316,7 @@ public class MySqlDataServiceImpl implements DataService {
       rs = stmt.executeQuery();
 
       while (rs.next()) {
-        AuctionBuilder builder =
-            Auction.newBuilder().uid(rs.getInt("UID")).name(rs.getString("NAME"));
+        AuctionBuilder builder = Auction.newBuilder().uid(rs.getInt("UID")).name(rs.getString("NAME"));
 
         Date startdate = rs.getDate("STARTDATE");
         if (startdate != null) {
@@ -465,11 +459,10 @@ public class MySqlDataServiceImpl implements DataService {
             Item.newBuilder().uid(rs.getInt("UID")).auctionUid(rs.getInt("AUCTIONUID"))
                 .itemNumber(rs.getString("ITEMNUMBER")).name(rs.getString("NAME"))
                 .description(rs.getString("DESCRIPTION")).category(rs.getString("CATEGORY"))
-                .seller(rs.getString("SELLER")).valPrice(rs.getDouble("VALPRICE"))
-                .minPrice(rs.getDouble("MINPRICE")).incPrice(rs.getDouble("INCPRICE"))
-                .curPrice(rs.getDouble("CURPRICE")).winner(rs.getString("WINNER"))
-                .bidCount(rs.getInt("BIDCOUNT")).watchCount(rs.getInt("WATCHCOUNT"))
-                .url(rs.getString("URL")).multi(rs.getBoolean("MULTI"));
+                .seller(rs.getString("SELLER")).valPrice(rs.getDouble("VALPRICE")).minPrice(rs.getDouble("MINPRICE"))
+                .incPrice(rs.getDouble("INCPRICE")).curPrice(rs.getDouble("CURPRICE")).winner(rs.getString("WINNER"))
+                .bidCount(rs.getInt("BIDCOUNT")).watchCount(rs.getInt("WATCHCOUNT")).url(rs.getString("URL"))
+                .multi(rs.getBoolean("MULTI"));
 
         obj = builder.build();
       }
@@ -480,16 +473,15 @@ public class MySqlDataServiceImpl implements DataService {
     }
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("ITEM [method:{} result:{}]", new Object[] {"get",
-          obj != null ? obj.toString() : "[error]"});
+      LOG.debug("ITEM [method:{} result:{}]", new Object[] {"get", obj != null ? obj.toString() : "[error]"});
     }
 
     return obj;
   }
 
   @Override
-  public List<Item> getItems(final int auctionUid, final int categoryuid, final int start,
-      final int length, final String sort, final String dir) {
+  public List<Item> getItems(final int auctionUid, final int categoryuid, final int start, final int length,
+      final String sort, final String dir) {
     List<Item> objs = new ArrayList<Item>();
 
     Connection conn = null;
@@ -514,11 +506,10 @@ public class MySqlDataServiceImpl implements DataService {
             Item.newBuilder().uid(rs.getInt("UID")).auctionUid(rs.getInt("AUCTIONUID"))
                 .itemNumber(rs.getString("ITEMNUMBER")).name(rs.getString("NAME"))
                 .description(rs.getString("DESCRIPTION")).category(rs.getString("CATEGORY"))
-                .seller(rs.getString("SELLER")).valPrice(rs.getDouble("VALPRICE"))
-                .minPrice(rs.getDouble("MINPRICE")).incPrice(rs.getDouble("INCPRICE"))
-                .curPrice(rs.getDouble("CURPRICE")).winner(rs.getString("WINNER"))
-                .bidCount(rs.getInt("BIDCOUNT")).watchCount(rs.getInt("WATCHCOUNT"))
-                .url(rs.getString("URL")).multi(rs.getBoolean("MULTI"));
+                .seller(rs.getString("SELLER")).valPrice(rs.getDouble("VALPRICE")).minPrice(rs.getDouble("MINPRICE"))
+                .incPrice(rs.getDouble("INCPRICE")).curPrice(rs.getDouble("CURPRICE")).winner(rs.getString("WINNER"))
+                .bidCount(rs.getInt("BIDCOUNT")).watchCount(rs.getInt("WATCHCOUNT")).url(rs.getString("URL"))
+                .multi(rs.getBoolean("MULTI"));
 
         objs.add(builder.build());
       }
@@ -555,8 +546,7 @@ public class MySqlDataServiceImpl implements DataService {
         ItemBuilder builder =
             Item.newBuilder().uid(rs.getInt("UID")).auctionUid(rs.getInt("AUCTIONUID"))
                 .itemNumber(rs.getString("ITEMNUMBER")).curPrice(rs.getDouble("CURPRICE"))
-                .winner(rs.getString("WINNER")).bidCount(rs.getInt("BIDCOUNT"))
-                .watchCount(rs.getInt("WATCHCOUNT"));
+                .winner(rs.getString("WINNER")).bidCount(rs.getInt("BIDCOUNT")).watchCount(rs.getInt("WATCHCOUNT"));
 
         objs.add(builder.build());
       }
@@ -696,8 +686,7 @@ public class MySqlDataServiceImpl implements DataService {
 
       while (rs.next()) {
         CategoryBuilder builder =
-            Category.newBuilder().uid(rs.getInt("UID")).auctionUid(rs.getInt("AUCTIONUID"))
-                .name(rs.getString("NAME"));
+            Category.newBuilder().uid(rs.getInt("UID")).auctionUid(rs.getInt("AUCTIONUID")).name(rs.getString("NAME"));
 
         obj = builder.build();
       }
@@ -708,16 +697,15 @@ public class MySqlDataServiceImpl implements DataService {
     }
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("CATEGORY [method:{} result:{}]", new Object[] {"get",
-          obj != null ? obj.toString() : "[error]"});
+      LOG.debug("CATEGORY [method:{} result:{}]", new Object[] {"get", obj != null ? obj.toString() : "[error]"});
     }
 
     return obj;
   }
 
   @Override
-  public List<Category> getCategories(final int auctionUid, final int start, final int length,
-      final String sort, final String dir) {
+  public List<Category> getCategories(final int auctionUid, final int start, final int length, final String sort,
+      final String dir) {
     List<Category> objs = new ArrayList<Category>();
 
     Connection conn = null;
@@ -738,8 +726,7 @@ public class MySqlDataServiceImpl implements DataService {
 
       while (rs.next()) {
         CategoryBuilder builder =
-            Category.newBuilder().uid(rs.getInt("UID")).auctionUid(rs.getInt("AUCTIONUID"))
-                .name(rs.getString("NAME"));
+            Category.newBuilder().uid(rs.getInt("UID")).auctionUid(rs.getInt("AUCTIONUID")).name(rs.getString("NAME"));
 
         objs.add(builder.build());
       }
@@ -885,8 +872,7 @@ public class MySqlDataServiceImpl implements DataService {
     }
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("USER [method:{} result:{}]", new Object[] {"get",
-          obj != null ? obj.toString() : "[error]"});
+      LOG.debug("USER [method:{} result:{}]", new Object[] {"get", obj != null ? obj.toString() : "[error]"});
     }
 
     return obj;
@@ -924,16 +910,15 @@ public class MySqlDataServiceImpl implements DataService {
     }
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("USER [method:{} result:{}]", new Object[] {"get",
-          obj != null ? obj.toString() : "[error]"});
+      LOG.debug("USER [method:{} result:{}]", new Object[] {"get", obj != null ? obj.toString() : "[error]"});
     }
 
     return obj;
   }
 
   @Override
-  public List<User> getUsers(final int auctionUid, final int start, final int length,
-      final String sort, final String dir) {
+  public List<User> getUsers(final int auctionUid, final int start, final int length, final String sort,
+      final String dir) {
     List<User> objs = new ArrayList<User>();
 
     Connection conn = null;
@@ -1093,9 +1078,8 @@ public class MySqlDataServiceImpl implements DataService {
 
       while (rs.next()) {
         BidBuilder builder =
-            Bid.newBuilder().uid(rs.getInt("UID")).itemUid(rs.getInt("ITEMUID"))
-                .userUid(rs.getInt("USERUID")).bidPrice(rs.getDouble("BIDPRICE"))
-                .bidDate(rs.getDate("BIDDATE").getTime());
+            Bid.newBuilder().uid(rs.getInt("UID")).itemUid(rs.getInt("ITEMUID")).userUid(rs.getInt("USERUID"))
+                .bidPrice(rs.getDouble("BIDPRICE")).bidDate(rs.getDate("BIDDATE").getTime());
 
         objs.add(builder.build());
       }
@@ -1130,9 +1114,8 @@ public class MySqlDataServiceImpl implements DataService {
 
       while (rs.next()) {
         BidBuilder builder =
-            Bid.newBuilder().uid(rs.getInt("UID")).itemUid(rs.getInt("ITEMUID"))
-                .userUid(rs.getInt("USERUID")).bidPrice(rs.getDouble("BIDPRICE"))
-                .bidDate(rs.getDate("BIDDATE").getTime());
+            Bid.newBuilder().uid(rs.getInt("UID")).itemUid(rs.getInt("ITEMUID")).userUid(rs.getInt("USERUID"))
+                .bidPrice(rs.getDouble("BIDPRICE")).bidDate(rs.getDate("BIDDATE").getTime());
 
         objs.add(builder.build());
       }
@@ -1167,9 +1150,8 @@ public class MySqlDataServiceImpl implements DataService {
 
       while (rs.next()) {
         BidBuilder builder =
-            Bid.newBuilder().uid(rs.getInt("UID")).itemUid(rs.getInt("ITEMUID"))
-                .userUid(rs.getInt("USERUID")).bidPrice(rs.getDouble("BIDPRICE"))
-                .bidDate(rs.getDate("BIDDATE").getTime());
+            Bid.newBuilder().uid(rs.getInt("UID")).itemUid(rs.getInt("ITEMUID")).userUid(rs.getInt("USERUID"))
+                .bidPrice(rs.getDouble("BIDPRICE")).bidDate(rs.getDate("BIDDATE").getTime());
 
         objs.add(builder.build());
       }
@@ -1215,8 +1197,7 @@ public class MySqlDataServiceImpl implements DataService {
         ItemBuilder builder =
             Item.newBuilder().uid(rs.getInt("UID")).auctionUid(rs.getInt("AUCTIONUID"))
                 .itemNumber(rs.getString("ITEMNUMBER")).curPrice(rs.getDouble("CURPRICE"))
-                .winner(rs.getString("WINNER")).bidCount(rs.getInt("BIDCOUNT"))
-                .watchCount(rs.getInt("WATCHCOUNT"));
+                .winner(rs.getString("WINNER")).bidCount(rs.getInt("BIDCOUNT")).watchCount(rs.getInt("WATCHCOUNT"));
 
         obj = builder.build();
       }
@@ -1227,8 +1208,7 @@ public class MySqlDataServiceImpl implements DataService {
     }
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("BID [method:{} result:{}]", new Object[] {"add",
-          obj != null ? obj.toString() : "[error]"});
+      LOG.debug("BID [method:{} result:{}]", new Object[] {"add", obj != null ? obj.toString() : "[error]"});
     }
 
     return obj;
@@ -1284,8 +1264,7 @@ public class MySqlDataServiceImpl implements DataService {
 
       while (rs.next()) {
         WatchBuilder builder =
-            Watch.newBuilder().uid(rs.getInt("UID")).userUid(rs.getInt("USERUID"))
-                .itemUid(rs.getInt("ITEMUID"));
+            Watch.newBuilder().uid(rs.getInt("UID")).userUid(rs.getInt("USERUID")).itemUid(rs.getInt("ITEMUID"));
 
         objs.add(builder.build());
       }
@@ -1320,8 +1299,7 @@ public class MySqlDataServiceImpl implements DataService {
 
       while (rs.next()) {
         WatchBuilder builder =
-            Watch.newBuilder().uid(rs.getInt("UID")).userUid(rs.getInt("USERUID"))
-                .itemUid(rs.getInt("ITEMUID"));
+            Watch.newBuilder().uid(rs.getInt("UID")).userUid(rs.getInt("USERUID")).itemUid(rs.getInt("ITEMUID"));
 
         objs.add(builder.build());
       }
@@ -1366,8 +1344,7 @@ public class MySqlDataServiceImpl implements DataService {
         ItemBuilder builder =
             Item.newBuilder().uid(rs.getInt("UID")).auctionUid(rs.getInt("AUCTIONUID"))
                 .itemNumber(rs.getString("ITEMNUMBER")).curPrice(rs.getDouble("CURPRICE"))
-                .winner(rs.getString("WINNER")).bidCount(rs.getInt("BIDCOUNT"))
-                .watchCount(rs.getInt("WATCHCOUNT"));
+                .winner(rs.getString("WINNER")).bidCount(rs.getInt("BIDCOUNT")).watchCount(rs.getInt("WATCHCOUNT"));
 
         obj = builder.build();
       }
@@ -1378,8 +1355,7 @@ public class MySqlDataServiceImpl implements DataService {
     }
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("WATCH [method:{} result:{}]", new Object[] {"add",
-          obj != null ? obj.toString() : "[error]"});
+      LOG.debug("WATCH [method:{} result:{}]", new Object[] {"add", obj != null ? obj.toString() : "[error]"});
     }
 
     return obj;
@@ -1435,9 +1411,8 @@ public class MySqlDataServiceImpl implements DataService {
 
       if (rs.next()) {
         BidBuilder builder =
-            Bid.newBuilder().uid(rs.getInt("UID")).itemUid(rs.getInt("ITEMUID"))
-                .userUid(rs.getInt("USERUID")).bidPrice(rs.getDouble("BIDPRICE"))
-                .bidDate(rs.getDate("BIDDATE").getTime());
+            Bid.newBuilder().uid(rs.getInt("UID")).itemUid(rs.getInt("ITEMUID")).userUid(rs.getInt("USERUID"))
+                .bidPrice(rs.getDouble("BIDPRICE")).bidDate(rs.getDate("BIDDATE").getTime());
 
         obj = builder.build();
       }
@@ -1448,8 +1423,7 @@ public class MySqlDataServiceImpl implements DataService {
     }
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug("BID [method:{} result:{}]", new Object[] {"get",
-          obj != null ? obj.toString() : "[error]"});
+      LOG.debug("BID [method:{} result:{}]", new Object[] {"get", obj != null ? obj.toString() : "[error]"});
     }
 
     return obj;

@@ -1,15 +1,14 @@
 /*
  * Copyright (c) 2010 mobiaware.com.
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 
 package com.mobiaware.auction.data;
@@ -31,8 +30,7 @@ public interface DataService {
 
   public void signout(int userUid);
 
-  public List<Device> getDevices(final int start, final int length, final String sort,
-      final String dir);
+  public List<Device> getDevices(final int start, final int length, final String sort, final String dir);
 
   public Integer getDeviceCount();
 
@@ -42,8 +40,7 @@ public interface DataService {
 
   public Auction getAuction(int uid);
 
-  public List<Auction> getAuctions(final int start, final int length, final String sort,
-      final String dir);
+  public List<Auction> getAuctions(final int start, final int length, final String sort, final String dir);
 
   public Integer getAuctionCount();
 
@@ -53,8 +50,7 @@ public interface DataService {
 
   public Item getItem(int uid);
 
-  public List<Item> getItems(int auctionUid, int categoryuid, int start, int length,
-      final String sort, final String dir);
+  public List<Item> getItems(int auctionUid, int categoryuid, int start, int length, final String sort, final String dir);
 
   public Integer getItemCount(int auctionUid, int categoryuid);
 
@@ -68,8 +64,8 @@ public interface DataService {
 
   public Category getCategory(int uid);
 
-  public List<Category> getCategories(final int auctionUid, final int start, final int length,
-      final String sort, final String dir);
+  public List<Category> getCategories(final int auctionUid, final int start, final int length, final String sort,
+      final String dir);
 
   public Integer getCategoryCount(int auctionUid);
 
@@ -81,8 +77,8 @@ public interface DataService {
 
   public User getUserByBidderNumber(String biddernumber);
 
-  public List<User> getUsers(final int auctionUid, final int start, final int length,
-      final String sort, final String dir);
+  public List<User> getUsers(final int auctionUid, final int start, final int length, final String sort,
+      final String dir);
 
   public Integer getUserCount(int auctionUid);
 

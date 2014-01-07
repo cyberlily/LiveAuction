@@ -43,8 +43,7 @@ public class ItemActionWatch extends Action {
   public void perform(final HttpServletRequest request, final HttpServletResponse response) {
     ServletContext context = request.getServletContext();
 
-    MetricRegistry metricRegistry =
-        (MetricRegistry) context.getAttribute(MetricsServlet.METRICS_REGISTRY);
+    MetricRegistry metricRegistry = (MetricRegistry) context.getAttribute(MetricsServlet.METRICS_REGISTRY);
     metricRegistry.meter("com.mobiaware.auction.watch").mark();
 
     String pbiddernumber = getStringParameter(request, HttpConstants.PARAM_BIDDERNUMBER, null);

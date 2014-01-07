@@ -1,15 +1,14 @@
 /*
  * Copyright (c) 2010 mobiaware.com.
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 
 package com.mobiaware.auction;
@@ -33,8 +32,7 @@ public class User {
 
   @JsonCreator
   public User(@JsonProperty("uid") final int uid, @JsonProperty("auctionUid") final int auctionUid,
-      @JsonProperty("bidderNumber") final String bidderNumber,
-      @JsonProperty("firstName") final String firstName,
+      @JsonProperty("bidderNumber") final String bidderNumber, @JsonProperty("firstName") final String firstName,
       @JsonProperty("lastName") final String lastName) {
 
     _uid = uid;
@@ -97,8 +95,7 @@ public class User {
 
   @Override
   public int hashCode() {
-    return Objects.hashCode(getUid(), getAuctionUid(), getBidderNumber(), getFirstName(),
-        getLastName());
+    return Objects.hashCode(getUid(), getAuctionUid(), getBidderNumber(), getFirstName(), getLastName());
   }
 
   @Override
@@ -113,17 +110,14 @@ public class User {
 
     User other = (User) obj;
 
-    return Objects.equal(getUid(), other.getUid())
-        && Objects.equal(getAuctionUid(), other.getAuctionUid())
+    return Objects.equal(getUid(), other.getUid()) && Objects.equal(getAuctionUid(), other.getAuctionUid())
         && Objects.equal(getBidderNumber(), other.getBidderNumber())
-        && Objects.equal(getFirstName(), other.getFirstName())
-        && Objects.equal(getLastName(), other.getLastName());
+        && Objects.equal(getFirstName(), other.getFirstName()) && Objects.equal(getLastName(), other.getLastName());
   }
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(getClass()).add("uid", getUid())
-        .add("biddernumber", getBidderNumber()).add("firstname", getFirstName())
-        .add("lastname", getLastName()).toString();
+    return Objects.toStringHelper(getClass()).add("uid", getUid()).add("biddernumber", getBidderNumber())
+        .add("firstname", getFirstName()).add("lastname", getLastName()).toString();
   }
 }

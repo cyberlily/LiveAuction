@@ -17,68 +17,52 @@ public class EventActionFactoryTest {
   public void testShouldSucceed() {
     HttpServletRequest request = mock(HttpServletRequest.class);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(
-        HttpConstants.ACTION_AUCTIONLIST);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_AUCTIONLIST);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(
-        HttpConstants.ACTION_AUCTIONLISTCNT);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_AUCTIONLISTCNT);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(
-        HttpConstants.ACTION_AUCTIONEDIT);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_AUCTIONEDIT);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(
-        HttpConstants.ACTION_AUCTIONDELETE);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_AUCTIONDELETE);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(
-        HttpConstants.ACTION_CATEGORYLIST);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_CATEGORYLIST);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(
-        HttpConstants.ACTION_CATEGORYLISTCNT);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_CATEGORYLISTCNT);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(
-        HttpConstants.ACTION_CATEGORYEDIT);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_CATEGORYEDIT);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(
-        HttpConstants.ACTION_CATEGORYDELETE);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_CATEGORYDELETE);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION))
-        .thenReturn(HttpConstants.ACTION_ITEMLIST);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_ITEMLIST);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(
-        HttpConstants.ACTION_ITEMLISTCNT);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_ITEMLISTCNT);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION))
-        .thenReturn(HttpConstants.ACTION_ITEMEDIT);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_ITEMEDIT);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(
-        HttpConstants.ACTION_ITEMDELETE);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_ITEMDELETE);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION))
-        .thenReturn(HttpConstants.ACTION_USERLIST);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_USERLIST);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(
-        HttpConstants.ACTION_USERLISTCNT);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_USERLISTCNT);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION))
-        .thenReturn(HttpConstants.ACTION_USEREDIT);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_USEREDIT);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
 
-    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(
-        HttpConstants.ACTION_USERDELETE);
+    when(request.getParameter(HttpConstants.PARAM_ACTION)).thenReturn(HttpConstants.ACTION_USERDELETE);
     Assert.assertFalse(LiveActionFactory.getAction(request) instanceof InvalidAction);
   }
 

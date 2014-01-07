@@ -1,15 +1,14 @@
 /*
  * Copyright (c) 2010 mobiaware.com.
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 
 package com.mobiaware.auction.live.action;
@@ -73,8 +72,7 @@ public class ItemActionBid extends Action {
   public void perform(final HttpServletRequest request, final HttpServletResponse response) {
     ServletContext context = request.getServletContext();
 
-    MetricRegistry metricRegistry =
-        (MetricRegistry) context.getAttribute(MetricsServlet.METRICS_REGISTRY);
+    MetricRegistry metricRegistry = (MetricRegistry) context.getAttribute(MetricsServlet.METRICS_REGISTRY);
     metricRegistry.meter("com.mobiaware.auction.bid").mark();
 
     String pbiddernumber = getStringParameter(request, HttpConstants.PARAM_BIDDERNUMBER, null);
@@ -129,9 +127,9 @@ public class ItemActionBid extends Action {
     if (pprice < (maxbid.getBidPrice() + item.getIncPrice())) {
       addError(ErrorConstants.E_206, ErrorConstants.E_206_MSG);
       outputJsonReponse(response, this);
-      return;    
+      return;
     }
-    
+
     Bid bid = Bid.newBuilder().itemUid(pitemuid).userUid(_user.getUid()).bidPrice(pprice).build();
 
     _item = getDataService().addBid(bid); // record bid (ALL bids get recorded)
@@ -141,8 +139,7 @@ public class ItemActionBid extends Action {
       return;
     }
 
-    if ((maxbid == null)
-        || (bid.getBidPrice() > maxbid.getBidPrice())
+    if ((maxbid == null) || (bid.getBidPrice() > maxbid.getBidPrice())
         || ((bid.getBidPrice() == maxbid.getBidPrice()) && (bid.getUserUid() == maxbid.getUserUid()))) {
       // nobids or highest bid or high bidder made same bid (updates to last time)
       _item = _item.toBuilder().winner(_user.getBidderNumber()).build();
@@ -172,8 +169,7 @@ public class ItemActionBid extends Action {
     eventBus.post(new WebNotification("liveauction-item", jsonData));
 
     // Signal notification
-    if ((maxbid != null) && (bid.getBidPrice() > maxbid.getBidPrice())
-        && (bid.getUserUid() != maxbid.getUserUid())) {
+    if ((maxbid != null) && (bid.getBidPrice() > maxbid.getBidPrice()) && (bid.getUserUid() != maxbid.getUserUid())) {
       List<Device> devices = getDataService().getDevicesForUser(maxbid.getUserUid());
       String alertMessage = "You have been outbid on Item# " + item.getItemNumber() + ".";
       eventBus.post(new PushNotification(devices, alertMessage));

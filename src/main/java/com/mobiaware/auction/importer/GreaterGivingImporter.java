@@ -1,15 +1,14 @@
 /*
  * Copyright (c) 2010 mobiaware.com.
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 
 package com.mobiaware.auction.importer;
@@ -41,8 +40,7 @@ public class GreaterGivingImporter extends Importer {
     columnmap.put("Minimum Bid", "minPrice");
     columnmap.put("Minimum Raise", "incPrice");
 
-    HeaderColumnNameTranslateMappingStrategy<Item> strategy =
-        new HeaderColumnNameTranslateMappingStrategy<Item>();
+    HeaderColumnNameTranslateMappingStrategy<Item> strategy = new HeaderColumnNameTranslateMappingStrategy<Item>();
     strategy.setType(Item.class);
     strategy.setColumnMapping(columnmap);
 
@@ -61,8 +59,7 @@ public class GreaterGivingImporter extends Importer {
     columnmap.put("First", "firstName");
     columnmap.put("Last", "lastName");
 
-    HeaderColumnNameTranslateMappingStrategy<User> strategy =
-        new HeaderColumnNameTranslateMappingStrategy<User>();
+    HeaderColumnNameTranslateMappingStrategy<User> strategy = new HeaderColumnNameTranslateMappingStrategy<User>();
     strategy.setType(User.class);
     strategy.setColumnMapping(columnmap);
 
