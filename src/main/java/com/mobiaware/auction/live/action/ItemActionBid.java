@@ -173,10 +173,9 @@ public class ItemActionBid extends Action {
 
     // Signal notification
     if ((maxbid != null) && (bid.getBidPrice() > maxbid.getBidPrice())
-        && (bid.getUserUid() == maxbid.getUserUid())) {
+        && (bid.getUserUid() != maxbid.getUserUid())) {
       List<Device> devices = getDataService().getDevicesForUser(maxbid.getUserUid());
       String alertMessage = "You have been outbid on Item# " + item.getItemNumber() + ".";
-
       eventBus.post(new AppleNotification(devices, alertMessage));
     }
 
