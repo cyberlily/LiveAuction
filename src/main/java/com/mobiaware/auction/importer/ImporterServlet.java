@@ -38,6 +38,7 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
 import com.mobiaware.servlet.HttpConstants;
 
@@ -88,9 +89,9 @@ public class ImporterServlet extends HttpServlet {
         }
       }
     } catch (IOException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } catch (FileUploadException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     }
 
     if ((paramFile == null) || (!paramFile.exists())) {

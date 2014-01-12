@@ -28,6 +28,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
 
 public class PropertyManager {
@@ -59,9 +60,9 @@ public class PropertyManager {
 
         _config.addConfiguration(config);
       } catch (ConfigurationException e) {
-        LOG.error("!EXCEPTION!", e);
+        LOG.error(Throwables.getStackTraceAsString(e));
       } catch (FileNotFoundException e) {
-        LOG.error("!EXCEPTION!", e);
+        LOG.error(Throwables.getStackTraceAsString(e));
       } finally {
         IOUtils.closeQuietly(in);
       }
@@ -80,7 +81,7 @@ public class PropertyManager {
 
       _config.addConfiguration(config);
     } catch (ConfigurationException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       IOUtils.closeQuietly(in);
     }

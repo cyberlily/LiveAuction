@@ -25,6 +25,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.mobiaware.auction.Auction;
@@ -49,8 +50,6 @@ public class MySqlDataServiceImpl implements DataService {
 
   @Override
   public boolean healthCheck() {
-    boolean healthy = true;
-
     Connection conn = null;
     CallableStatement stmt = null;
 
@@ -60,15 +59,15 @@ public class MySqlDataServiceImpl implements DataService {
       stmt = conn.prepareCall("select now()");
 
       stmt.execute();
+      
+      return true;
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
-
-      healthy = false;
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt);
     }
 
-    return healthy;
+    return false;
   }
 
   @Override
@@ -87,7 +86,7 @@ public class MySqlDataServiceImpl implements DataService {
 
       return stmt.getString(2);
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt);
     }
@@ -108,7 +107,7 @@ public class MySqlDataServiceImpl implements DataService {
 
       stmt.execute();
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt);
     }
@@ -134,7 +133,7 @@ public class MySqlDataServiceImpl implements DataService {
 
       uid = stmt.getInt(1);
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -173,7 +172,7 @@ public class MySqlDataServiceImpl implements DataService {
         objs.add(builder.build());
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -204,7 +203,7 @@ public class MySqlDataServiceImpl implements DataService {
         count = rs.getInt(1);
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -240,7 +239,7 @@ public class MySqlDataServiceImpl implements DataService {
         objs.add(builder.build());
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -284,7 +283,7 @@ public class MySqlDataServiceImpl implements DataService {
         obj = builder.build();
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -331,7 +330,7 @@ public class MySqlDataServiceImpl implements DataService {
         objs.add(builder.build());
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -362,7 +361,7 @@ public class MySqlDataServiceImpl implements DataService {
         count = rs.getInt(1);
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -394,7 +393,7 @@ public class MySqlDataServiceImpl implements DataService {
 
       uid = stmt.getInt(1);
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -426,7 +425,7 @@ public class MySqlDataServiceImpl implements DataService {
         result = rs.getInt(1);
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -467,7 +466,7 @@ public class MySqlDataServiceImpl implements DataService {
         obj = builder.build();
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -514,7 +513,7 @@ public class MySqlDataServiceImpl implements DataService {
         objs.add(builder.build());
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -551,7 +550,7 @@ public class MySqlDataServiceImpl implements DataService {
         objs.add(builder.build());
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -584,7 +583,7 @@ public class MySqlDataServiceImpl implements DataService {
         count = rs.getInt(1);
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -622,7 +621,7 @@ public class MySqlDataServiceImpl implements DataService {
 
       uid = stmt.getInt(1);
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
 
       uid = -1;
     } finally {
@@ -656,7 +655,7 @@ public class MySqlDataServiceImpl implements DataService {
         result = rs.getInt(1);
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -691,7 +690,7 @@ public class MySqlDataServiceImpl implements DataService {
         obj = builder.build();
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -731,7 +730,7 @@ public class MySqlDataServiceImpl implements DataService {
         objs.add(builder.build());
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -763,7 +762,7 @@ public class MySqlDataServiceImpl implements DataService {
         count = rs.getInt(1);
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -794,7 +793,7 @@ public class MySqlDataServiceImpl implements DataService {
 
       uid = stmt.getInt(1);
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
 
       uid = -1;
     } finally {
@@ -828,7 +827,7 @@ public class MySqlDataServiceImpl implements DataService {
         result = rs.getInt(1);
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -866,7 +865,7 @@ public class MySqlDataServiceImpl implements DataService {
         obj.setPasswordHash(rs.getString("PASSWORDHASH"));
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -904,7 +903,7 @@ public class MySqlDataServiceImpl implements DataService {
         obj.setPasswordHash(rs.getString("PASSWORDHASH"));
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -949,7 +948,7 @@ public class MySqlDataServiceImpl implements DataService {
         objs.add(obj);
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -981,7 +980,7 @@ public class MySqlDataServiceImpl implements DataService {
         count = rs.getInt(1);
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -1015,7 +1014,7 @@ public class MySqlDataServiceImpl implements DataService {
 
       uid = stmt.getInt(1);
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
       uid = -1;
     } finally {
       PoolConnection.returnConnection(conn, stmt);
@@ -1048,7 +1047,7 @@ public class MySqlDataServiceImpl implements DataService {
         result = rs.getInt(1);
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -1084,7 +1083,7 @@ public class MySqlDataServiceImpl implements DataService {
         objs.add(builder.build());
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -1120,7 +1119,7 @@ public class MySqlDataServiceImpl implements DataService {
         objs.add(builder.build());
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -1156,7 +1155,7 @@ public class MySqlDataServiceImpl implements DataService {
         objs.add(builder.build());
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -1202,7 +1201,7 @@ public class MySqlDataServiceImpl implements DataService {
         obj = builder.build();
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -1234,7 +1233,7 @@ public class MySqlDataServiceImpl implements DataService {
         result = rs.getInt(1);
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -1269,7 +1268,7 @@ public class MySqlDataServiceImpl implements DataService {
         objs.add(builder.build());
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -1304,7 +1303,7 @@ public class MySqlDataServiceImpl implements DataService {
         objs.add(builder.build());
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -1349,7 +1348,7 @@ public class MySqlDataServiceImpl implements DataService {
         obj = builder.build();
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -1381,7 +1380,7 @@ public class MySqlDataServiceImpl implements DataService {
         result = rs.getInt(1);
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -1417,7 +1416,7 @@ public class MySqlDataServiceImpl implements DataService {
         obj = builder.build();
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       PoolConnection.returnConnection(conn, stmt, rs);
     }
@@ -1449,7 +1448,7 @@ public class MySqlDataServiceImpl implements DataService {
 
       sum = stmt.getDouble(1);
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
 
       sum = 0;
     } finally {

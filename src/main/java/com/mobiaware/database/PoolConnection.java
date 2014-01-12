@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Throwables;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 import com.mobiaware.servlet.PropertyManager;
@@ -60,9 +61,9 @@ public class PoolConnection {
         LOG.debug("Connection pooling is configured. [{}]", POOL.getTotalCreatedConnections());
       }
     } catch (ClassNotFoundException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     }
   }
 
@@ -89,7 +90,7 @@ public class PoolConnection {
       // synchronization of the method will be done inside BoneCP.
       conn = pool.getConnection();
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     }
 
     if (LOG.isDebugEnabled()) {
@@ -108,7 +109,7 @@ public class PoolConnection {
         conn.close();
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     }
   }
 
@@ -122,7 +123,7 @@ public class PoolConnection {
         rs.close();
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     }
 
     try {
@@ -130,7 +131,7 @@ public class PoolConnection {
         stmt.close();
       }
     } catch (SQLException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     }
 
     if (conn != null) {

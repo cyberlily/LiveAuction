@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Preconditions;
+import com.google.common.base.Throwables;
 import com.google.common.eventbus.Subscribe;
 import com.mobiaware.auction.live.NotificationServlet;
 
@@ -81,7 +82,7 @@ public class WebNotificationEngine implements NotificationEngine {
         try {
           connection.getWebSocketSession().getBasicRemote().sendText(payload);
         } catch (IOException e) {
-          LOG.error("!EXCEPTION!", e);
+          LOG.error(Throwables.getStackTraceAsString(e));
 
           _connections.remove(connection);
 

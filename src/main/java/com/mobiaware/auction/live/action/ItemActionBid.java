@@ -36,6 +36,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Throwables;
 import com.google.common.eventbus.EventBus;
 import com.mobiaware.auction.Auction;
 import com.mobiaware.auction.Bid;
@@ -151,16 +152,13 @@ public class ItemActionBid extends Action {
     try {
       jsonData = mapper.writeValueAsString(this);
     } catch (JsonGenerationException e) {
-      LOG.error("!EXCEPTION!", e);
-
+      LOG.error(Throwables.getStackTraceAsString(e));
       jsonData = null;
     } catch (JsonMappingException e) {
-      LOG.error("!EXCEPTION!", e);
-
+      LOG.error(Throwables.getStackTraceAsString(e));
       jsonData = null;
     } catch (IOException e) {
-      LOG.error("!EXCEPTION!", e);
-
+      LOG.error(Throwables.getStackTraceAsString(e));
       jsonData = null;
     }
 

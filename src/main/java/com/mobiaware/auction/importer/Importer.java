@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Throwables;
 import com.mobiaware.auction.Item;
 import com.mobiaware.auction.User;
 import com.mobiaware.auction.data.DataService;
@@ -114,11 +115,11 @@ public abstract class Importer {
     try {
       return mapper.writeValueAsString(this);
     } catch (JsonGenerationException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } catch (JsonMappingException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     } catch (IOException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     }
 
     return "";

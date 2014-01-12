@@ -14,14 +14,19 @@
 package com.mobiaware.auction.live.notify;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Preconditions;
+import com.google.common.base.Throwables;
 import com.google.common.eventbus.Subscribe;
 import com.mobiaware.servlet.PropertyManager;
 import com.relayrides.pushy.apns.ApnsEnvironment;
@@ -66,8 +71,14 @@ public class PushNotificationEngine implements NotificationEngine {
 
       _pushManager = new PushManager<SimpleApnsPushNotification>(env, keyStore, password.toCharArray());
       _pushManager.registerRejectedNotificationListener(new PushManagerRejectedNotificationListener());
-    } catch (Exception e) {
-      LOG.error("!EXCEPTION!", e);
+    } catch (NoSuchAlgorithmException e) {
+      LOG.error(Throwables.getStackTraceAsString(e));
+    } catch (CertificateException e) {
+      LOG.error(Throwables.getStackTraceAsString(e));
+    } catch (IOException e) {
+      LOG.error(Throwables.getStackTraceAsString(e));
+    } catch (KeyStoreException e) {
+      LOG.error(Throwables.getStackTraceAsString(e));
     } finally {
       IOUtils.closeQuietly(is);
     }
@@ -99,7 +110,7 @@ public class PushNotificationEngine implements NotificationEngine {
     try {
       getPushManager().shutdown();
     } catch (InterruptedException e) {
-      LOG.error("!EXCEPTION!", e);
+      LOG.error(Throwables.getStackTraceAsString(e));
     }
 
     if (LOG.isDebugEnabled()) {
