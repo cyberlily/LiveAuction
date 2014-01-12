@@ -13,7 +13,6 @@
 
 package com.mobiaware.servlet.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -24,6 +23,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.google.common.collect.Lists;
 
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public abstract class Action {
@@ -44,7 +44,7 @@ public abstract class Action {
 
   public void addError(final String code, final String message) {
     if (_errors == null) {
-      _errors = new ArrayList<Error>();
+      _errors = Lists.newArrayList();
     }
     _errors.add(new Error(code, message));
   }

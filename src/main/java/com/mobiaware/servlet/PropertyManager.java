@@ -16,7 +16,6 @@ package com.mobiaware.servlet;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,6 +27,8 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.collect.Lists;
 
 public class PropertyManager {
   private static final String NAME = PropertyManager.class.getSimpleName();
@@ -109,7 +110,7 @@ public class PropertyManager {
   public List<String> getStrings(final String key) {
     if ((_config != null) && (StringUtils.isNotBlank(key))) {
       List<Object> objs = _config.getList(key);
-      List<String> strings = new ArrayList<String>();
+      List<String> strings = Lists.newArrayList();
       for (Object obj : objs) {
         if ((obj instanceof String) && (StringUtils.isNotBlank((String) obj))) {
           strings.add((String) obj);

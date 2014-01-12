@@ -13,16 +13,16 @@
 
 package com.mobiaware.auction.live.notify;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import com.mobiaware.auction.Device;
 import com.relayrides.pushy.apns.util.ApnsPayloadBuilder;
 import com.relayrides.pushy.apns.util.SimpleApnsPushNotification;
 import com.relayrides.pushy.apns.util.TokenUtil;
 
 public class PushNotification {
-  private final List<SimpleApnsPushNotification> _notifications = new ArrayList<SimpleApnsPushNotification>();
+  private final List<SimpleApnsPushNotification> _notifications = Lists.newArrayList();
   private final String _payload;
 
   public PushNotification(final List<Device> devices, final String message) {

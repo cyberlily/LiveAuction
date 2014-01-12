@@ -16,7 +16,6 @@ package com.mobiaware.auction.live.action;
 import static com.mobiaware.util.HttpRequestHelpers.getStringParameter;
 import static com.mobiaware.util.HttpResponseHelpers.outputJsonReponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +25,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.Lists;
 import com.mobiaware.auction.Item;
 import com.mobiaware.auction.User;
 import com.mobiaware.auction.Watch;
@@ -77,7 +77,7 @@ public class ItemActionMyWatchItemList extends Action {
       return;
     }
 
-    _items = new ArrayList<Item>();
+    _items = Lists.newArrayList();
 
     List<Watch> watches = getDataService().getWatchesByUser(_user.getUid());
     for (Watch watch : watches) {

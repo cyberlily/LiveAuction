@@ -14,7 +14,6 @@
 package com.mobiaware.auction.importer;
 
 import java.io.Reader;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +22,7 @@ import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.bean.CsvToBean;
 import au.com.bytecode.opencsv.bean.HeaderColumnNameTranslateMappingStrategy;
 
+import com.google.common.collect.Maps;
 import com.mobiaware.auction.Item;
 import com.mobiaware.auction.User;
 
@@ -30,7 +30,7 @@ public class GreaterGivingImporter extends Importer {
 
   @Override
   protected List<Item> importItems(final Reader reader) {
-    Map<String, String> columnmap = new HashMap<String, String>();
+    Map<String, String> columnmap = Maps.newLinkedHashMap();
     columnmap.put("Package Number", "itemNumber");
     columnmap.put("Name", "name");
     columnmap.put("Description", "description");
@@ -54,7 +54,7 @@ public class GreaterGivingImporter extends Importer {
 
   @Override
   protected List<User> importUsers(final Reader reader) {
-    Map<String, String> columnmap = new HashMap<String, String>();
+    Map<String, String> columnmap = Maps.newLinkedHashMap();
     columnmap.put("Bidder Number", "bidderNumber");
     columnmap.put("First", "firstName");
     columnmap.put("Last", "lastName");

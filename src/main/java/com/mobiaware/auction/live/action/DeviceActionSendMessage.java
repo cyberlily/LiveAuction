@@ -3,8 +3,6 @@ package com.mobiaware.auction.live.action;
 import static com.mobiaware.util.HttpRequestHelpers.getStringParameter;
 import static com.mobiaware.util.HttpResponseHelpers.outputJsonReponse;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -12,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.eventbus.EventBus;
 import com.mobiaware.auction.Device;
 import com.mobiaware.auction.data.DataService;
@@ -41,7 +40,7 @@ public class DeviceActionSendMessage extends Action {
     }
 
     List<Device> devices = getDataService().getDevices(0, 500, null, null);
-    List<Device> filteredDevices = new ArrayList<Device>(new HashSet<Device>(devices));
+    List<Device> filteredDevices = ImmutableSet.copyOf(devices).asList();
 
     ServletContext context = request.getServletContext();
     EventBus eventBus = (EventBus) context.getAttribute(NotificationEngine.EVENTBUS_REGISTRY);

@@ -19,7 +19,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -27,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import com.mobiaware.auction.Auction;
 import com.mobiaware.auction.AuctionBuilder;
 import com.mobiaware.auction.Bid;
@@ -148,7 +148,7 @@ public class MySqlDataServiceImpl implements DataService {
 
   @Override
   public List<Device> getDevices(final int start, final int length, final String sort, final String dir) {
-    List<Device> objs = new ArrayList<Device>();
+    List<Device> objs = Lists.newArrayList();
 
     Connection conn = null;
     CallableStatement stmt = null;
@@ -218,7 +218,7 @@ public class MySqlDataServiceImpl implements DataService {
 
   @Override
   public List<Device> getDevicesForUser(final int userUid) {
-    List<Device> objs = new ArrayList<Device>();
+    List<Device> objs = Lists.newArrayList();
 
     Connection conn = null;
     CallableStatement stmt = null;
@@ -298,7 +298,7 @@ public class MySqlDataServiceImpl implements DataService {
 
   @Override
   public List<Auction> getAuctions(final int start, final int length, final String sort, final String dir) {
-    List<Auction> objs = new ArrayList<Auction>();
+    List<Auction> objs = Lists.newArrayList();
 
     Connection conn = null;
     CallableStatement stmt = null;
@@ -482,7 +482,7 @@ public class MySqlDataServiceImpl implements DataService {
   @Override
   public List<Item> getItems(final int auctionUid, final int categoryuid, final int start, final int length,
       final String sort, final String dir) {
-    List<Item> objs = new ArrayList<Item>();
+    List<Item> objs = Lists.newArrayList();
 
     Connection conn = null;
     CallableStatement stmt = null;
@@ -528,7 +528,7 @@ public class MySqlDataServiceImpl implements DataService {
 
   @Override
   public List<Item> getItemUpdates(final int auctionUid) {
-    List<Item> objs = new ArrayList<Item>();
+    List<Item> objs = Lists.newArrayList();
 
     Connection conn = null;
     CallableStatement stmt = null;
@@ -706,7 +706,7 @@ public class MySqlDataServiceImpl implements DataService {
   @Override
   public List<Category> getCategories(final int auctionUid, final int start, final int length, final String sort,
       final String dir) {
-    List<Category> objs = new ArrayList<Category>();
+    List<Category> objs = Lists.newArrayList();
 
     Connection conn = null;
     CallableStatement stmt = null;
@@ -919,7 +919,7 @@ public class MySqlDataServiceImpl implements DataService {
   @Override
   public List<User> getUsers(final int auctionUid, final int start, final int length, final String sort,
       final String dir) {
-    List<User> objs = new ArrayList<User>();
+    List<User> objs = Lists.newArrayList();
 
     Connection conn = null;
     CallableStatement stmt = null;
@@ -1062,7 +1062,7 @@ public class MySqlDataServiceImpl implements DataService {
 
   @Override
   public List<Bid> getBidsByItem(final int itemUid) {
-    List<Bid> objs = new ArrayList<Bid>();
+    List<Bid> objs = Lists.newArrayList();
 
     Connection conn = null;
     CallableStatement stmt = null;
@@ -1098,7 +1098,7 @@ public class MySqlDataServiceImpl implements DataService {
 
   @Override
   public List<Bid> getBidsByUser(final int userUid) {
-    List<Bid> objs = new ArrayList<Bid>();
+    List<Bid> objs = Lists.newArrayList();
 
     Connection conn = null;
     CallableStatement stmt = null;
@@ -1134,7 +1134,7 @@ public class MySqlDataServiceImpl implements DataService {
 
   @Override
   public List<Bid> getBidsByUser2(final int userUid) {
-    List<Bid> objs = new ArrayList<Bid>();
+    List<Bid> objs = Lists.newArrayList();
 
     Connection conn = null;
     CallableStatement stmt = null;
@@ -1248,7 +1248,7 @@ public class MySqlDataServiceImpl implements DataService {
 
   @Override
   public List<Watch> getWatchesByItem(final int itemUid) {
-    List<Watch> objs = new ArrayList<Watch>();
+    List<Watch> objs = Lists.newArrayList();
 
     Connection conn = null;
     CallableStatement stmt = null;
@@ -1283,7 +1283,7 @@ public class MySqlDataServiceImpl implements DataService {
 
   @Override
   public List<Watch> getWatchesByUser(final int userUid) {
-    List<Watch> objs = new ArrayList<Watch>();
+    List<Watch> objs = Lists.newArrayList();
 
     Connection conn = null;
     CallableStatement stmt = null;

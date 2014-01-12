@@ -18,7 +18,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -39,6 +38,7 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.Maps;
 import com.mobiaware.servlet.HttpConstants;
 
 @WebServlet(name = "ImporterServlet", urlPatterns = "/import")
@@ -70,7 +70,7 @@ public class ImporterServlet extends HttpServlet {
     servletFileUpload.setSizeMax(REQUEST_SIZE);
 
     File paramFile = null;
-    Map<String, String> paramMap = new HashMap<String, String>();
+    Map<String, String> paramMap = Maps.newLinkedHashMap();
 
     try {
       FileItemIterator fileItemIterator = servletFileUpload.getItemIterator(request);

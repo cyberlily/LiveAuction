@@ -16,7 +16,6 @@ package com.mobiaware.auction.live.action;
 import static com.mobiaware.util.HttpRequestHelpers.getStringParameter;
 import static com.mobiaware.util.HttpResponseHelpers.outputJsonReponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +25,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.Lists;
 import com.mobiaware.auction.Bid;
 import com.mobiaware.auction.Item;
 import com.mobiaware.auction.User;
@@ -77,7 +77,7 @@ public class ItemActionMyBidItemList extends Action {
       return;
     }
 
-    _items = new ArrayList<Item>();
+    _items = Lists.newArrayList();
 
     List<Bid> bids = getDataService().getBidsByUser2(_user.getUid());
     for (Bid bid : bids) {
